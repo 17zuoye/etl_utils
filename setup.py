@@ -16,7 +16,7 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
-        'fast_object_id',
+        'fast_object_id >= 0.0.2',
         'nltk',
         'marisa_trie',
         'werkzeug',
