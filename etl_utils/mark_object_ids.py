@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from etl.utils import FastObjectId, ItemIncrementIdDict
+from fast_object_id import FastObjectId
+from .item_increment_id_dict import ItemIncrementIdDict
 
 class MarkObjectIds(object):
     """
