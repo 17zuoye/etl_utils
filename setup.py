@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from setuptools import setup
 
 setup(
@@ -18,6 +20,7 @@ setup(
         'nltk',
         'marisa_trie',
         'werkzeug',
+        'lxml >= 3.3.5',
     ],
     classifiers=[
         'Intended Audience :: Developers',

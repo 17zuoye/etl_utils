@@ -5,8 +5,8 @@
 # 详情见 http://lxml.de/parsing.html#python-unicode-strings 描述
 
 from lxml import etree
-
 from itertools import chain
+
 class TextArrayXMLParser(object):
     """
     XML题目内容parse，见fullcontent.question.choice里的参考数据说明
