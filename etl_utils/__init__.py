@@ -2,7 +2,7 @@
 
 from .buffer_logger import BufferLogger
 from .cpickle_cache import cPickleCache
-from open_sources.fast_object_id import FastObjectId
+from fast_object_id import FastObjectId
 from .list import most_common_inspect, uniq_seqs
 from .process_notifier import ProcessNotifier
 from .speed import Speed

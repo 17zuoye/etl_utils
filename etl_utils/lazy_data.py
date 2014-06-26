@@ -22,7 +22,14 @@ class LazyData(object):
         """
         return cPickleCache(current_dir + "/two_length_words.cPickle", load__two_length_words__func).process()
 
+    @cached_property
+    def regular_words(self):
+        import nltk
+        import marisa_trie
+        from .regexp import word_regexp
+        return marisa_trie.Trie([unicode(w1) for w1 in nltk.corpus.abc.words() if word_regexp.match(w1)])
 
+ld = LazyData()
 
 
 def load__two_length_words__func():

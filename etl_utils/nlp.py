@@ -2,8 +2,7 @@
 
 import re
 
-from .lazy_data import LazyData
-ld = LazyData()
+from .lazy_data import ld
 
 def is_regular_word(str1):
     """
