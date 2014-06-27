@@ -47,3 +47,22 @@ class ItemsGroupAndIndexes(object):
             print ', '.join([str(i1) for i1 in l1])
         print "groups_len", self.groups_len()
         print "items_len", self.items_len()
+
+    def result_json(self):
+        return [
+                [(((type(i1) in [int, float]) and i1) or str(i1) ) for i1 in r1]
+            for r1 in self.result]
+
+if __name__ == "__main__":
+    igi = ItemsGroupAndIndexes()
+    igi.add([1,2,3])
+    igi.add([4,5,6])
+    igi.add([7,8,9])
+    igi.add([10,11])
+    assert igi.result_json() == [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11]]
+    assert igi.find(7) == [7,8,9]
+    assert igi.exists(3)
+    assert not igi.exists(13)
+    assert igi.exists_between(10, 11)
+    assert igi.groups_len() == 4
+    assert igi.items_len() == 11
