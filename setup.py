@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='etl_utils',
-    version='0.0.1',
+    version='0.0.2',
     url='http://github.com/mvj3/etl_utils/',
     license='MIT',
     author='David Chen',
@@ -21,6 +21,7 @@ setup(
         'marisa_trie',
         'werkzeug',
         'lxml >= 3.3.5',
+        'pyenchant',
     ],
     classifiers=[
         'Intended Audience :: Developers',
