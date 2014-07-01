@@ -21,6 +21,7 @@ setup(
         'marisa_trie',
         'werkzeug',
         'lxml >= 3.3.5',
+        'pyenchant',
     ],
     classifiers=[
         'Intended Audience :: Developers',
