@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import collections, re
-from .chars import re_special_chars
+from .regexp import re_special_chars
 import math
 
 class String(object):

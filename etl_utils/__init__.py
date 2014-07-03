@@ -6,7 +6,7 @@ from fast_object_id import FastObjectId
 from .list import most_common_inspect, uniq_seqs
 from .process_notifier import ProcessNotifier
 from .speed import Speed
-from .string import String
+from .string_utils import String
 from .items_group_and_indexes import ItemsGroupAndIndexes
 from .item_increment_id_dict import ItemIncrementIdDict
 from .math_utils import MathUtils
