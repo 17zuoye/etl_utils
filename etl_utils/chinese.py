@@ -14,31 +14,19 @@ __date__="2007-08-04"
 
 def is_chinese(uchar):
         """判断一个unicode是否是汉字"""
-        if uchar >= u'\u4e00' and uchar<=u'\u9fa5':
-                return True
-        else:
-                return False
+        return uchar >= u'\u4e00' and uchar<=u'\u9fa5'
 
 def is_number(uchar):
         """判断一个unicode是否是数字"""
-        if uchar >= u'\u0030' and uchar<=u'\u0039':
-                return True
-        else:
-                return False
+        return uchar >= u'\u0030' and uchar<=u'\u0039'
 
 def is_alphabet(uchar):
         """判断一个unicode是否是英文字母"""
-        if (uchar >= u'\u0041' and uchar<=u'\u005a') or (uchar >= u'\u0061' and uchar<=u'\u007a'):
-                return True
-        else:
-                return False
+        return (uchar >= u'\u0041' and uchar<=u'\u005a') or (uchar >= u'\u0061' and uchar<=u'\u007a')
 
 def is_other(uchar):
         """判断是否非汉字，数字和英文字符"""
-        if not (is_chinese(uchar) or is_number(uchar) or is_alphabet(uchar)):
-                return True
-        else:
-                return False
+        return not (is_chinese(uchar) or is_number(uchar) or is_alphabet(uchar))
 
 def B2Q(uchar):
         """半角转全角"""
@@ -93,6 +81,18 @@ def string2List(ustring):
         return retList
 
 if __name__=="__main__":
+        assert is_chinese(u"你")
+        assert not is_chinese(u"h")
+
+        assert is_number(u"3")
+        assert not is_number(u"a")
+
+        assert is_alphabet(u"h")
+        assert not is_alphabet(u"3")
+
+        assert is_other(u"。")
+        assert not is_other(u"a")
+
         #test Q2B and B2Q
         for i in range(0x0020,0x007F):
                 print Q2B(B2Q(unichr(i))),B2Q(unichr(i))
