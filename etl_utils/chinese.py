@@ -62,9 +62,14 @@ def Q2B(uchar):
                 return uchar
         return unichr(inside_code)
 
-def stringQ2B(ustring):
+def stringQ2B(ustring, convert_strs={
+                                      unicode("…", "UTF-8") : u"...",
+                                      u"′"                  : u"'",
+                                     }):
         """把字符串全角转半角"""
-        return "".join([Q2B(uchar) for uchar in ustring])
+        result = [Q2B(uchar) for uchar in ustring]
+        result = [(((uchar in convert_strs) and convert_strs[uchar]) or uchar) for uchar in result]
+        return "".join(result)
 
 def uniform(ustring):
         """格式化字符串，完成全角转半角，大写转小写的工作"""
@@ -97,3 +102,8 @@ if __name__=="__main__":
         ustring=uniform(ustring)
         ret=string2List(ustring)
         print ret
+
+        assert u"@"     == stringQ2B(u"＠")
+        assert u"Z"     == Q2B(u"Ｚ")
+        assert u"..."   == stringQ2B(unicode("…", "UTF-8"))
+        assert u"'"     == stringQ2B(u"′")
