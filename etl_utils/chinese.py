@@ -14,22 +14,27 @@ __date__="2007-08-04"
 
 def is_chinese(uchar):
         """判断一个unicode是否是汉字"""
+        assert isinstance(uchar, unicode)
         return uchar >= u'\u4e00' and uchar<=u'\u9fa5'
 
 def is_number(uchar):
         """判断一个unicode是否是数字"""
+        assert isinstance(uchar, unicode)
         return uchar >= u'\u0030' and uchar<=u'\u0039'
 
 def is_alphabet(uchar):
         """判断一个unicode是否是英文字母"""
+        assert isinstance(uchar, unicode)
         return (uchar >= u'\u0041' and uchar<=u'\u005a') or (uchar >= u'\u0061' and uchar<=u'\u007a')
 
 def is_other(uchar):
         """判断是否非汉字，数字和英文字符"""
+        assert isinstance(uchar, unicode)
         return not (is_chinese(uchar) or is_number(uchar) or is_alphabet(uchar))
 
 def B2Q(uchar):
         """半角转全角"""
+        assert isinstance(uchar, unicode)
         inside_code=ord(uchar)
         if inside_code<0x0020 or inside_code>0x7e:      #不是半角字符就返回原来的字符
                 return uchar
@@ -41,6 +46,7 @@ def B2Q(uchar):
 
 def Q2B(uchar):
         """全角转半角"""
+        assert isinstance(uchar, unicode)
         inside_code=ord(uchar)
         if inside_code==0x3000:
                 inside_code=0x0020
@@ -55,6 +61,7 @@ def stringQ2B(ustring, convert_strs={
                                       u"′"                  : u"'",
                                      }):
         """把字符串全角转半角"""
+        assert isinstance(ustring, unicode)
         result = [Q2B(uchar) for uchar in ustring]
         result = [(((uchar in convert_strs) and convert_strs[uchar]) or uchar) for uchar in result]
         return "".join(result)
