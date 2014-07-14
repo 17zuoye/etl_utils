@@ -36,7 +36,7 @@ class ProcessNotifier(object):
 
         process_count = 0
 
-        widgets = ['Processing: ', pb.Percentage(), ' ', pb.Bar(),
+        widgets = ['  Processing: ', pb.Percentage(), ' ', pb.Bar(),
                    ' ', ItemProcessSpeed()]
 
         if self.scope_count:
