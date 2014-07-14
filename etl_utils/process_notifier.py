@@ -32,11 +32,11 @@ class ProcessNotifier(object):
 
     def generator(self):
         """ Use a Generator to print the inner status when iterate a scope."""
-        print "[pid %i] To loading %i records..." % (self.current_pid, self.scope_count)
+        base_str = "[pid %i] To loading %i records " % (self.current_pid, self.scope_count)
 
         process_count = 0
 
-        widgets = ['  Processing: ', pb.Percentage(), ' ', pb.Bar(),
+        widgets = ['  ', base_str, pb.Percentage(), ' ', pb.Bar(),
                    ' ', ItemProcessSpeed()]
 
         if self.scope_count:
