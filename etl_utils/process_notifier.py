@@ -38,11 +38,13 @@ class ProcessNotifier(object):
 
         widgets = ['Processing: ', pb.Percentage(), ' ', pb.Bar(),
                    ' ', ItemProcessSpeed()]
-        self.pbar = pb.ProgressBar(widgets=widgets, maxval=self.scope_count).start()
+
+        if self.scope_count:
+            self.pbar = pb.ProgressBar(widgets=widgets, maxval=self.scope_count).start()
 
         for record in self.iterator():
             process_count += 1
-            self.pbar.update(process_count)
+            if self.scope_count: self.pbar.update(process_count)
             yield record
         print
 
