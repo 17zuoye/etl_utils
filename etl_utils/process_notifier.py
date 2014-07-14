@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import progressbar as pb
+
 
 class ProcessNotifier(object):
     """
@@ -19,6 +21,10 @@ class ProcessNotifier(object):
         self.current_pid = os.getpid()
         self.per = per1
 
+        # 兼容 list和dict
+        self.scope_count = len(self.scope) if hasattr(self.scope, '__len__') else self.scope.count()
+
+
     def iterator(self):
         if 'iterator' in dir(self.scope)        : return self.scope.iterator()
         if 'itervalues' in dir(self.scope)      : return self.scope.itervalues()
@@ -26,17 +32,36 @@ class ProcessNotifier(object):
 
     def generator(self):
         """ Use a Generator to print the inner status when iterate a scope."""
+        print "[pid %i] To loading %i records..." % (self.current_pid, self.scope_count)
+
         process_count = 0
 
-        # 兼容 list和dict
-        scope_count = len(self.scope) if hasattr(self.scope, '__len__') else self.scope.count()
+        widgets = ['Processing: ', pb.Percentage(), ' ', pb.Bar(),
+                   ' ', ItemProcessSpeed()]
+        self.pbar = pb.ProgressBar(widgets=widgets, maxval=self.scope_count).start()
 
-        print "[pid %i] To loading %i records..." % (self.current_pid, scope_count)
         for record in self.iterator():
             process_count += 1
-            if (process_count > 0) and (process_count % self.per == 0):
-                print "[pid %i][Processing records]" % self.current_pid, process_count, "."
-            if process_count == scope_count:
-                print "[pid %i][Processed records]" % self.current_pid, process_count, ", done!"
+            self.pbar.update(process_count)
             yield record
         print
+
+
+class ItemProcessSpeed(pb.ProgressBarWidget):
+    def __init__(self):
+        self.fmt = '%6.2f items/s'
+    def update(self, pbar):
+        if pbar.seconds_elapsed < 2e-6:#== 0:
+            bps = 0.0
+        else:
+            bps = float(pbar.currval) / pbar.seconds_elapsed
+        return self.fmt % bps
+
+
+def process_notifier(scope):
+    return ProcessNotifier(scope).generator()
+
+if __name__=='__main__':
+    import time
+    for i1 in process_notifier(range(500)):
+        time.sleep(0.01)

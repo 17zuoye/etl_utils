@@ -22,6 +22,7 @@ setup(
         'werkzeug',
         'lxml >= 3.3.5',
         'pyenchant',
+        'progressbar',
     ],
     classifiers=[
         'Intended Audience :: Developers',

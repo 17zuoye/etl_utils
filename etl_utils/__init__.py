@@ -4,7 +4,7 @@ from .buffer_logger import BufferLogger
 from .cpickle_cache import cPickleCache
 from fast_object_id import FastObjectId
 from .list import most_common_inspect, uniq_seqs
-from .process_notifier import ProcessNotifier
+from .process_notifier import ProcessNotifier, process_notifier
 from .speed import Speed
 from .string_utils import String
 from .items_group_and_indexes import ItemsGroupAndIndexes
