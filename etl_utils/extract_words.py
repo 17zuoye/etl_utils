@@ -19,6 +19,3 @@ def extract_words(sentence):
     these_words = [i1.strip() for i1 in sentence.split(" ")]
     words = [i1 for i1 in these_words if is_nltk_word(i1)]
     return words
-
-if __name__ == "__main__":
-    pass

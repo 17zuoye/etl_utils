@@ -23,7 +23,3 @@ def dict_nested_read(dict1, keys, default_val=None):
                 break
 
     return current_val
-
-if __name__ == "__main__":
-    d1 = {"a" : {"b" : "c"} }
-    assert dict_nested_read(d1, ["a", "b"]) == "c"

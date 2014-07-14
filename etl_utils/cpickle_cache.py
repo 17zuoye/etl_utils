@@ -25,3 +25,6 @@ class cPickleCache(object):
             cPickle.dump(result, open(self.filename, 'wb'))
         print ("load in %2.2f sec" % (time.time()-tb))
         return result
+
+def cpickle_cache(filename, func1):
+    return cPickleCache(filename, func1).process()

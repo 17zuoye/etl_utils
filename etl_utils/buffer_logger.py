@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from .string import String
+from .string_utils import String
 
 class BufferLogger(object):
     """日志缓存管理

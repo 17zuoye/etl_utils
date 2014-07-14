@@ -86,31 +86,3 @@ def string2List(ustring):
         if len(utmp)!=0:
                 retList.append("".join(utmp))
         return retList
-
-if __name__=="__main__":
-        assert is_chinese(u"你")
-        assert not is_chinese(u"h")
-
-        assert is_number(u"3")
-        assert not is_number(u"a")
-
-        assert is_alphabet(u"h")
-        assert not is_alphabet(u"3")
-
-        assert is_other(u"。")
-        assert not is_other(u"a")
-
-        #test Q2B and B2Q
-        for i in range(0x0020,0x007F):
-                print Q2B(B2Q(unichr(i))),B2Q(unichr(i))
-
-        #test uniform
-        ustring=u'中国 人名ａ高频Ａ'
-        ustring=uniform(ustring)
-        ret=string2List(ustring)
-        print ret
-
-        assert u"@"     == stringQ2B(u"＠")
-        assert u"Z"     == Q2B(u"Ｚ")
-        assert u"..."   == stringQ2B(unicode("…", "UTF-8"))
-        assert u"'"     == stringQ2B(u"′")

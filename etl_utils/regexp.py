@@ -21,9 +21,3 @@ re_special_chars = re.compile(
                         ’|—|？|;|。|，|：|）|（|．|！|、|“|”|\"|=|‘|′|\/|　|\\|＿|…|\+|\–|Ⅰ|Ⅱ|`| |@|－|；|｀|＇|•|∶ # 特殊字符
                         """,
                     re.VERBOSE)
-
-
-
-if __name__ == "__main__":
-    __answers_str = "WhoWhoseWho\xe2\x80\x99s"
-    assert re_special_chars.sub("", __answers_str) == "WhoWhoseWhos"
