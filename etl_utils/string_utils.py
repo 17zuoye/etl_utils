@@ -106,7 +106,10 @@ class String(object):
         return just_str(str1, 'rjust', width, fillchar)
 
 def just_str(str1, method, width, fillchar):
-    """ http://www.cnblogs.com/tonykong/archive/2012/07/02/2572971.html """
+    """
+    Compact with chinese ajust.
+    http://www.cnblogs.com/tonykong/archive/2012/07/02/2572971.html
+    """
     if isinstance(str1, str): str1 = unicode(str1, "UTF-8")
     assert isinstance(str1, unicode)
 
