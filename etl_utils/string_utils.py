@@ -3,6 +3,7 @@
 import collections, re
 from .regexp import re_special_chars
 import math
+from .chinese import is_chinese
 
 class String(object):
 
@@ -94,3 +95,20 @@ class String(object):
         return {
                 "sorted_freq_chars" : ''.join([i1[0] for i1 in sorted(result.most_common())[0:default_length]]),
                 "uniq_chars__len" : len(result.keys()) }
+
+
+    @classmethod
+    def ljust(self, str1, width, fillchar=' '):
+        return just_str(str1, 'ljust', width, fillchar)
+
+    @classmethod
+    def rjust(self, str1, width, fillchar=' '):
+        return just_str(str1, 'rjust', width, fillchar)
+
+def just_str(str1, method, width, fillchar):
+    """ http://www.cnblogs.com/tonykong/archive/2012/07/02/2572971.html """
+    if isinstance(str1, str): str1 = unicode(str1, "UTF-8")
+    assert isinstance(str1, unicode)
+
+    chinese_count = len([s1 for s1 in str1 if is_chinese(s1)])
+    return getattr(str1, method)(width - chinese_count, fillchar)
