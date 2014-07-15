@@ -60,9 +60,14 @@ class TestPhrasalRecognizer(unittest.TestCase):
         self.assertEqual(re_special_chars.sub("", __answers_str), "WhoWhoseWhos")
 
     def test_string_utils(self):
-        pure_english_len = String.ljust("Ruby Python", 10).count(' ')
-        with_chinese_len = String.ljust("中文 Python", 10).count(' ')
-        self.assertEqual(pure_english_len, with_chinese_len)
+        def func(a, b):
+            pure_english_len = Unicode.rjust(a, 20).count(' ')
+            with_chinese_len = Unicode.rjust(b, 20).count(' ')
+            self.assertEqual(pure_english_len, with_chinese_len)
+
+        func(u"ｂ", u"你")
+        func(u"在", u"、")
+        func(u"Ruby vs Python", u"中文 、 Python")
 
 
 if __name__ == '__main__': unittest.main()

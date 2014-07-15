@@ -44,6 +44,9 @@ def B2Q(uchar):
                 inside_code+=0xfee0
         return unichr(inside_code)
 
+def is_Q(uchar):
+    return uchar != Q2B(uchar)
+
 def Q2B(uchar):
         """全角转半角"""
         assert isinstance(uchar, unicode)

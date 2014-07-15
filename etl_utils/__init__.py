@@ -16,3 +16,4 @@ from .regexp import alphabet_regexp, word_regexp, upper_regexp, re_special_chars
 from .nlp import is_regular_word
 from .lazy_data import ld
 from .chinese import is_chinese, is_number, is_alphabet, is_other, B2Q, Q2B, stringQ2B, uniform, string2List
+from .unicode_utils import Unicode

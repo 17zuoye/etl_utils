@@ -22,6 +22,7 @@ setup(
         'lxml >= 3.3.5',
         'pyenchant',
         'progressbar',
+        'urwid',
     ],
     classifiers=[
         'Intended Audience :: Developers',
