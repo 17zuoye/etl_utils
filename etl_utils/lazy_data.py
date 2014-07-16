@@ -20,6 +20,20 @@ class LazyData(object):
         检查 2个字符 的字符组 是否是正常单词 或 词组
         e.g. `"At" in two_length_words`
         """
+        def load__two_length_words__func():
+            import nltk
+            import marisa_trie
+            return marisa_trie.Trie( \
+                        sorted( \
+                        list( \
+                        set(\
+                            [w1 for w1 in nltk.corpus.abc.words() \
+                                if (len(w1) == 2) and \
+                                    re.compile("[a-z]", re.IGNORECASE).match(w1[0]) \
+                            ] \
+                        ))))
+
+
         return cPickleCache(current_dir + "/two_length_words.cPickle", load__two_length_words__func).process()
 
     @cached_property
@@ -29,18 +43,27 @@ class LazyData(object):
         from .regexp import word_regexp
         return marisa_trie.Trie([unicode(w1) for w1 in nltk.corpus.abc.words() if word_regexp.match(w1)])
 
+    @cached_property
+    def lemmatize(self):
+        """
+        return lemmatize method.
+
+        必须得注明 词形 才行
+        >>> lmtzr.lemmatize("having")
+        'having'
+        >>> lmtzr.lemmatize("having", 'v')
+        'have'
+
+        http://stackoverflow.com/questions/771918/how-do-i-do-word-stemming-or-lemmatization
+        """
+        from nltk.stem.wordnet import WordNetLemmatizer
+        lmtzr = WordNetLemmatizer()
+
+        def func(word1, tag1=None):
+            if tag1 is None:
+                word1 = lmtzr.lemmatize(word1, 'v')
+                tag1 = 'n'
+            return lmtzr.lemmatize(word1, tag1)
+        return func
+
 ld = LazyData()
-
-
-def load__two_length_words__func():
-    import nltk
-    import marisa_trie
-    return marisa_trie.Trie( \
-                sorted( \
-                list( \
-                set(\
-                    [w1 for w1 in nltk.corpus.abc.words() \
-                        if (len(w1) == 2) and \
-                            re.compile("[a-z]", re.IGNORECASE).match(w1[0]) \
-                    ] \
-                ))))

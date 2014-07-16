@@ -76,5 +76,8 @@ class TestPhrasalRecognizer(unittest.TestCase):
         data = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
         self.assertTrue(calculate_entropy(data) > 1)
 
+    def test_lazy_data(self):
+        self.assertEqual(ld.lemmatize("having"), "have")
+
 
 if __name__ == '__main__': unittest.main()
