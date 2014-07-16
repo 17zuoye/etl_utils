@@ -66,4 +66,11 @@ class LazyData(object):
             return lmtzr.lemmatize(word1, tag1)
         return func
 
+    @cached_property
+    def tagged_words__dict(self):
+        import nltk
+        return {w1:t1.upper() for w1, t1 in nltk.corpus.brown.tagged_words()}
+
+
+
 ld = LazyData()
