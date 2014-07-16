@@ -8,6 +8,8 @@ import unittest
 
 from etl_utils import *
 
+inspect = False
+
 class TestPhrasalRecognizer(unittest.TestCase):
     def test_chinese(self):
         self.assertTrue(is_chinese(u"你"))
@@ -24,13 +26,14 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
         #test Q2B and B2Q
         for i in range(0x0020,0x007F):
+            if inspect:
                 print Q2B(B2Q(unichr(i))),B2Q(unichr(i))
 
         #test uniform
         ustring=u'中国 人名ａ高频Ａ'
         ustring=uniform(ustring)
         ret=string2List(ustring)
-        print ret
+        self.assertEqual(ret, [u"中国", u"人名a高频a"])
 
         self.assertEqual(u"@",    stringQ2B(u"＠"))
         self.assertEqual(u"Z",    Q2B(u"Ｚ"))
@@ -68,6 +71,10 @@ class TestPhrasalRecognizer(unittest.TestCase):
         func(u"ｂ", u"你")
         func(u"在", u"、")
         func(u"Ruby vs Python", u"中文 、 Python")
+
+    def test_calculate_entropy(self):
+        data = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+        self.assertTrue(calculate_entropy(data) > 1)
 
 
 if __name__ == '__main__': unittest.main()
