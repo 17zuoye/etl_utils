@@ -32,7 +32,7 @@ class LazyData(object):
                         ))))
 
 
-        return cPickleCache(current_dir + "/two_length_words.cPickle", load__two_length_words__func).process()
+        return cpickle_cache(current_dir + "/two_length_words.cPickle", load__two_length_words__func)
 
     @cached_property
     def regular_words(self):
