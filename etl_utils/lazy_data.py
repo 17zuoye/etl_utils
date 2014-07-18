@@ -2,10 +2,8 @@
 
 import os
 import re
-from .cpickle_cache import cPickleCache
+from .cache_utils import cpickle_cache, cached_property
 current_dir = os.path.dirname(os.path.realpath(__file__))
-
-from werkzeug.utils import cached_property
 
 class LazyData(object):
 
