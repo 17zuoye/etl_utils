@@ -30,5 +30,5 @@ class cPickleCache(object):
             cprint(u"generating cache ...", end='')
             result = self.func()
             cPickle.dump(result, open(self.filename, 'wb'))
-        cprint(" load in %2.2f sec" % (time.time()-tb), end='')
+        cprint(" load in %2.2f sec" % (time.time()-tb))
         return result

@@ -79,5 +79,13 @@ class TestPhrasalRecognizer(unittest.TestCase):
     def test_lazy_data(self):
         self.assertEqual(ld.lemmatize("having"), "have")
 
+    def test_cpickle_cache(self):
+        data1 = ["cpickle_cache"]
+        file1 = root_dir + '/tests/test_cpickle_cache.cPickle'
+
+        cpickle_cache(file1, lambda : data1)
+        self.assertEqual(data1, cpickle_cache(file1, lambda : None))
+        os.remove(file1)
+
 
 if __name__ == '__main__': unittest.main()
