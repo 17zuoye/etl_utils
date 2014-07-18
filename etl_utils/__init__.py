@@ -3,7 +3,7 @@
 from .buffer_logger import BufferLogger
 from .cache_utils import cpickle_cache, cached_property
 from .list import most_common_inspect, uniq_seqs
-from .process_notifier import ProcessNotifier, process_notifier
+from .process_notifier import process_notifier
 from .speed import Speed
 from .string_utils import String
 from .items_group_and_indexes import ItemsGroupAndIndexes
