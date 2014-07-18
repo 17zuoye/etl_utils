@@ -23,6 +23,7 @@ setup(
         'pyenchant',
         'progressbar',
         'urwid',
+        'termcolor',
     ],
     classifiers=[
         'Intended Audience :: Developers',

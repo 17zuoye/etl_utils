@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from .buffer_logger import BufferLogger
-from .cpickle_cache import cPickleCache, cpickle_cache
+from .cache_utils import cpickle_cache, cached_property
 from .list import most_common_inspect, uniq_seqs
 from .process_notifier import ProcessNotifier, process_notifier
 from .speed import Speed
