@@ -12,7 +12,7 @@ class ProcessNotifier(object):
         # do b1
     """
 
-    def __init__(self, scope, per1=1000):
+    def __init__(self, scope, per1):
         """ TypeError: __init__() should return None, not 'generator' """
         if hasattr(scope, 'count') or isinstance(scope, list) or hasattr(scope, 'itervalues') or hasattr(scope, 'iterator'):
             self.scope = scope
@@ -60,8 +60,8 @@ class ItemProcessSpeed(pb.ProgressBarWidget):
         return self.fmt % bps
 
 
-def process_notifier(scope):
-    return ProcessNotifier(scope).generator()
+def process_notifier(scope, per1=1000):
+    return ProcessNotifier(scope, per1).generator()
 
 if __name__=='__main__':
     import time
