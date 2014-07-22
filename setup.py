@@ -24,6 +24,7 @@ setup(
         'progressbar',
         'urwid',
         'termcolor',
+        'jieba',
     ],
     classifiers=[
         'Intended Audience :: Developers',

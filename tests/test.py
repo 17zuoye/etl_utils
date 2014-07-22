@@ -11,18 +11,18 @@ from etl_utils import *
 inspect = False
 
 class TestPhrasalRecognizer(unittest.TestCase):
-    def test_chinese(self):
-        self.assertTrue(is_chinese(u"你"))
-        self.assertFalse(is_chinese(u"h"))
+    def test_Unicode(self):
+        self.assertTrue(Unicode.is_chinese(u"你"))
+        self.assertFalse(Unicode.is_chinese(u"h"))
 
-        self.assertTrue(is_number(u"3"))
-        self.assertFalse(is_number(u"a"))
+        self.assertTrue(Unicode.is_number(u"3"))
+        self.assertFalse(Unicode.is_number(u"a"))
 
-        self.assertTrue(is_alphabet(u"h"))
-        self.assertFalse(is_alphabet(u"3"))
+        self.assertTrue(Unicode.is_alphabet(u"h"))
+        self.assertFalse(Unicode.is_alphabet(u"3"))
 
-        self.assertTrue(is_other(u"。"))
-        self.assertFalse(is_other(u"a"))
+        self.assertTrue(Unicode.is_other(u"。"))
+        self.assertFalse(Unicode.is_other(u"a"))
 
         #test Q2B and B2Q
         for i in range(0x0020,0x007F):
@@ -31,14 +31,16 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
         #test uniform
         ustring=u'中国 人名ａ高频Ａ'
-        ustring=uniform(ustring)
-        ret=string2List(ustring)
+        ustring=Unicode.uniform(ustring)
+        ret=Unicode.string2List(ustring)
         self.assertEqual(ret, [u"中国", u"人名a高频a"])
 
-        self.assertEqual(u"@",    stringQ2B(u"＠"))
-        self.assertEqual(u"Z",    Q2B(u"Ｚ"))
-        self.assertEqual(u"...",  stringQ2B(unicode("…", "UTF-8")))
-        self.assertEqual(u"'",    stringQ2B(u"′"))
+        self.assertEqual(u"@",    Unicode.stringQ2B(u"＠"))
+        self.assertEqual(u"Z",    Unicode.Q2B(u"Ｚ"))
+        self.assertEqual(u"...",  Unicode.stringQ2B(unicode("…", "UTF-8")))
+        self.assertEqual(u"'",    Unicode.stringQ2B(u"′"))
+
+        self.assertEqual(jieba_parse("精确模式"), [u"精确", u"模式"])
 
     def test_dict_utils(self):
         d1 = {"a" : {"b" : "c"} }
