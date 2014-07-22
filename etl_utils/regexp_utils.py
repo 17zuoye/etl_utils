@@ -10,10 +10,10 @@ class RegexpUtils(object):
     def alphabet(self): return re.compile("[a-z]", re.IGNORECASE)
 
     @cached_property
-    def word_regexp(self): return re.compile("^[a-z]+$", re.IGNORECASE)
+    def word(self): return re.compile("^[a-z]+$", re.IGNORECASE)
 
     @cached_property
-    def upper_regexp(self): return re.compile("[A-Z]")
+    def upper(self): return re.compile("[A-Z]")
 
     @cached_property
     def object_id(self): return re.compile("^[a-z0-9]{24}$")
