@@ -62,7 +62,7 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
     def test_re_special_chars(self):
         __answers_str = "WhoWhoseWho\xe2\x80\x99s"
-        self.assertEqual(re_special_chars.sub("", __answers_str), "WhoWhoseWhos")
+        self.assertEqual(regexp.special_chars.sub("", __answers_str), "WhoWhoseWhos")
 
     def test_string_utils(self):
         def func(a, b):

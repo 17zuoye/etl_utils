@@ -12,7 +12,7 @@ from .math_utils import MathUtils
 from .xml import TextArrayXMLParser
 from .dict_utils import dict_nested_read
 from .extract_words import is_nltk_word, extract_words
-from .regexp import alphabet_regexp, word_regexp, upper_regexp, re_special_chars, object_id_regexp
+from .regexp_utils import regexp
 from .nlp import is_regular_word, jieba_parse
 from .lazy_data import ld
 from .unicode_utils import Unicode
