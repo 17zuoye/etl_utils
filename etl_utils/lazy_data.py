@@ -9,6 +9,11 @@ class LazyData(object):
 
     @cached_property
     def en_us_dict(self):
+        """
+        werid example.
+        >>> en_us_dict.check(u"跑")
+        True
+        """
         import enchant
         return enchant.Dict("en_US")
 
