@@ -42,6 +42,9 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
         self.assertEqual(jieba_parse("精确模式"), [u"精确", u"模式"])
 
+        current_file = Unicode.read(__file__)
+        self.assertTrue(isinstance(current_file, unicode))
+
     def test_dict_utils(self):
         d1 = {"a" : {"b" : "c"} }
         self.assertEqual(dict_nested_read(d1, ["a", "b"]), "c")

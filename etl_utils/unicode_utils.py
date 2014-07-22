@@ -114,8 +114,13 @@ class UnicodeWidth(object):
             return getattr(str1, method)(width - two_width_count, fillchar)
         return func
 
-class UnicodeClass(UnicodeConvert, UnicodeWidth):
+class UnicodeFile(object):
+    def read(self, filename):
+        return open(filename).read().decode("UTF-8")
+
+class UnicodeClass(UnicodeConvert, UnicodeWidth,UnicodeFile):
     instance = None
+
 
 # 通过Unicode实例来暴露接口
 Unicode = UnicodeClass.instance or UnicodeClass()
