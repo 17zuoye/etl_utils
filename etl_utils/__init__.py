@@ -17,3 +17,4 @@ from .nlp import is_regular_word, jieba_parse
 from .lazy_data import ld
 from .unicode_utils import Unicode
 from .entropy import calculate_entropy
+from singleton import singleton

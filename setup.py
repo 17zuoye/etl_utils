@@ -25,6 +25,7 @@ setup(
         'urwid',
         'termcolor',
         'jieba',
+        'singleton',
     ],
     classifiers=[
         'Intended Audience :: Developers',
