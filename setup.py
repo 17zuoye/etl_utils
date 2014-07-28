@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='etl_utils',
-    version='0.0.4',
+    version='0.0.5',
     url='http://github.com/mvj3/etl_utils/',
     license='MIT',
     author='David Chen',
