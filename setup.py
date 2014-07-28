@@ -25,7 +25,7 @@ setup(
         'urwid',
         'termcolor',
         'jieba',
-        'singleton',
+        'pysingleton',
     ],
     classifiers=[
         'Intended Audience :: Developers',
