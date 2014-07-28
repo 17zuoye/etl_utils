@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import collections, re
-from .regexp import re_special_chars
+from .regexp_utils import regexp
 import math
 
 class String(object):
@@ -40,8 +40,8 @@ class String(object):
             return {"similarity_rate": 0.0, "info": ""}
 
         if skip_special_chars:
-            text1 = re_special_chars.sub("", text1)
-            text2 = re_special_chars.sub("", text2)
+            text1 = regexp.special_chars.sub("", text1)
+            text2 = regexp.special_chars.sub("", text2)
 
         # 不兼容处理中文等非英文转化为list
         text1_list        = list(text1.strip())
