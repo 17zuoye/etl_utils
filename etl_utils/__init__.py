@@ -19,3 +19,4 @@ from .unicode_utils import Unicode
 from .entropy import calculate_entropy
 from singleton import singleton
 from .hash_utils import HashUtils
+from .itertools_utils import ItertoolsUtils

@@ -93,7 +93,19 @@ class TestPhrasalRecognizer(unittest.TestCase):
         os.remove(file1)
 
     def test_hash_utils(self):
-        self.assertEqual(HashUtils.hashvalue_with_sorted("hello"), HashUtils.hashvalue_with_sorted("elloh"))
+        self.assertEqual( \
+                HashUtils.hashvalue_with_sorted("hello"), \
+                HashUtils.hashvalue_with_sorted("elloh"))
 
+    def test_itertools_utils(self):
+        self.assertEqual(ItertoolsUtils.split_seqs_by_size([1,2,3,4], 2), \
+                [[[1], [2, 3, 4]], [[1, 2], [3, 4]], [[1, 2, 3], [4]]])
+
+        self.assertEqual(ItertoolsUtils.split_seqs_by_size([1,2,3,4], 3), \
+                [[[1], [2], [3, 4]], [[1], [2, 3], [4]], [[1, 2], [3], [4]]])
+
+        self.assertEqual(ItertoolsUtils.split_seqs_by_size([1,2,3,4,5], 3), \
+                [[[1], [2], [3, 4, 5]], [[1], [2, 3], [4, 5]], [[1], [2, 3, 4], \
+                [5]], [[1, 2], [3], [4, 5]], [[1, 2], [3, 4], [5]], [[1, 2, 3], [4], [5]]])
 
 if __name__ == '__main__': unittest.main()
