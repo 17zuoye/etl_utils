@@ -5,6 +5,9 @@ import re
 from .cache_utils import cpickle_cache, cached_property
 current_dir = os.path.dirname(os.path.realpath(__file__))
 
+from singleton import singleton
+
+@singleton()
 class LazyData(object):
 
     @cached_property
