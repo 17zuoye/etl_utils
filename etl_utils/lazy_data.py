@@ -46,8 +46,8 @@ class LazyData(object):
     def regular_words(self):
         import nltk
         import marisa_trie
-        from .regexp import word_regexp
-        return marisa_trie.Trie([unicode(w1) for w1 in nltk.corpus.abc.words() if word_regexp.match(w1)])
+        from .regexp_utils import regexp
+        return marisa_trie.Trie([unicode(w1) for w1 in nltk.corpus.abc.words() if regexp.word.match(w1)])
 
     @cached_property
     def lemmatize(self):
