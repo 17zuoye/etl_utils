@@ -2,9 +2,10 @@
 
 import re
 from .cache_utils import cached_property
+from singleton import singleton
 
+@singleton()
 class RegexpUtils(object):
-    instance = None
 
     @cached_property
     def alphabet(self): return re.compile("[a-z]", re.IGNORECASE)
@@ -33,4 +34,4 @@ class RegexpUtils(object):
 # "’|—|？|;|。|，|：|）|（|．|！|、|“|”|\"|=|‘|′|/|　|\\|＿|…|+|–|Ⅰ|Ⅱ|`| |@|－|；|｀|＇|•|∶|４|２|１|ɑ|→|&|￥|´|√|×|ə|ɜ|ː|<|>|①|②|③|④|¥||"
 """
 
-regexp = RegexpUtils.instance or RegexpUtils()
+regexp = RegexpUtils()

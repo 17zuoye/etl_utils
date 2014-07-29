@@ -92,5 +92,8 @@ class TestPhrasalRecognizer(unittest.TestCase):
         self.assertEqual(data1, cpickle_cache(file1, lambda : None))
         os.remove(file1)
 
+    def test_hash_utils(self):
+        self.assertEqual(HashUtils.hashvalue_with_sorted("hello"), HashUtils.hashvalue_with_sorted("elloh"))
+
 
 if __name__ == '__main__': unittest.main()

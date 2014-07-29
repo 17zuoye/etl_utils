@@ -18,3 +18,4 @@ from .lazy_data import ld
 from .unicode_utils import Unicode
 from .entropy import calculate_entropy
 from singleton import singleton
+from .hash_utils import HashUtils
