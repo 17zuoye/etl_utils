@@ -80,8 +80,11 @@ class LazyData(object):
         return {w1:t1.upper() for w1, t1 in nltk.corpus.brown.tagged_words()}
 
     def nltk_download(self, package):
+        import nltk
+        if nltk.data.path[0] != current_dir:
+            nltk.data.path.insert(0, current_dir)
+
         if not os.path.isdir(os.path.join(current_dir, 'corpora', package)):
-            import nltk
             nltk.download(info_or_id=package, download_dir=current_dir)
 
 
