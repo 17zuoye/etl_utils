@@ -31,9 +31,8 @@ class LazyData(object):
 
     @cached_property
     def nltk_abc_data(self):
-        self.nltk_download('abc')
+        nltk = self.nltk_download('abc')
         def load__nltk_abc_data__func():
-            import nltk
             import marisa_trie
             from .regexp_utils import regexp
             words = nltk.corpus.abc.words()
@@ -70,10 +69,8 @@ class LazyData(object):
 
         http://stackoverflow.com/questions/771918/how-do-i-do-word-stemming-or-lemmatization
         """
-        self.nltk_download('wordnet')
-
-        from nltk.stem.wordnet import WordNetLemmatizer
-        lmtzr = WordNetLemmatizer()
+        nltk = self.nltk_download('wordnet')
+        lmtzr = nltk.stem.wordnet.WordNetLemmatizer()
 
         def func(word1, tag1=None):
             if tag1 is None:
@@ -84,7 +81,7 @@ class LazyData(object):
 
     @cached_property
     def tagged_words__dict(self):
-        self.nltk_download('brown')
+        nltk = self.nltk_download('brown')
         return {w1:t1.upper() for w1, t1 in nltk.corpus.brown.tagged_words()}
 
     def nltk_download(self, package):
@@ -94,6 +91,7 @@ class LazyData(object):
 
         if not os.path.isdir(os.path.join(current_dir, 'corpora', package)):
             nltk.download(info_or_id=package, download_dir=current_dir)
+        return nltk
 
 
 
