@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import os
-import re
+import os, re
 from .cache_utils import cpickle_cache, cached_property
-current_dir = os.path.dirname(os.path.realpath(__file__))
-
+from ._current_dir import current_dir
 from singleton import singleton
 
 @singleton()
@@ -40,7 +38,7 @@ class LazyData(object):
                         ))))
 
 
-        return cpickle_cache(current_dir + "/two_length_words.cPickle", load__two_length_words__func)
+        return cpickle_cache(current_dir + "/two_length_words.cPickle", load__two_length_words__func, False)
 
     @cached_property
     def regular_words(self):
@@ -62,6 +60,10 @@ class LazyData(object):
 
         http://stackoverflow.com/questions/771918/how-do-i-do-word-stemming-or-lemmatization
         """
+        if not os.path.isdir(os.path.join(current_dir, 'corpora/wordnet')):
+            import nltk
+            nltk.download(info_or_id='wordnet', download_dir=current_dir)
+
         from nltk.stem.wordnet import WordNetLemmatizer
         lmtzr = WordNetLemmatizer()
 

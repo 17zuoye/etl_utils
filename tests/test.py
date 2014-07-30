@@ -83,6 +83,7 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
     def test_lazy_data(self):
         self.assertEqual(ld.lemmatize("having"), "have")
+        self.assertTrue(ld.two_length_words)
 
     def test_cpickle_cache(self):
         data1 = ["cpickle_cache"]

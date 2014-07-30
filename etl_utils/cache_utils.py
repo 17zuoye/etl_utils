@@ -5,7 +5,7 @@ from termcolor import cprint
 
 from werkzeug.utils import cached_property
 
-def cpickle_cache(filename, func1):
+def cpickle_cache(filename, func1, quiet=False):
     """
     Usage:
 
@@ -15,20 +15,26 @@ def cpickle_cache(filename, func1):
 
 
 class cPickleCache(object):
-    def __init__(self, filename, func1):
+    def __init__(self, filename, func1, quiet=False):
         self.filename = filename
         self.func     = func1
+        self.quiet    = quiet
+
+    def blue(self, msg, is_ender=False):
+        if not self.quiet:
+            e1 = "\n" if is_ender else ""
+            cprint(msg, 'blue', end=e1)
 
     def process(self):
         tb = time.time()
-        cprint(u"[%s] " % self.filename, 'blue', end='')
+        self.blue(u"[%s] " % self.filename)
 
         if os.path.isfile(self.filename):
-            cprint(u"cache is already exists!", 'blue', end='')
+            self.blue(u"cache is already exists!")
             result = cPickle.load(open(self.filename, 'rb'))
         else:
-            cprint(u"generating cache ...", 'blue', end='')
+            self.blue(u"generating cache ...")
             result = self.func()
             cPickle.dump(result, open(self.filename, 'wb'))
-        cprint(" load in %2.2f sec" % (time.time()-tb), 'blue')
+        self.blue(" load in %2.2f sec" % (time.time()-tb), True)
         return result
