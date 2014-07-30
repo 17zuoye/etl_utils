@@ -38,13 +38,15 @@ class LazyData(object):
                         ))))
 
 
-        return cpickle_cache(current_dir + "/two_length_words.cPickle", load__two_length_words__func, False)
+        return cpickle_cache(current_dir + "/two_length_words.cPickle", \
+                load__two_length_words__func, True)
 
     @cached_property
     def regular_words(self):
         import nltk
         import marisa_trie
         from .regexp_utils import regexp
+        self.nltk_download('abc')
         return marisa_trie.Trie([unicode(w1) for w1 in nltk.corpus.abc.words() if regexp.word.match(w1)])
 
     @cached_property
@@ -60,9 +62,7 @@ class LazyData(object):
 
         http://stackoverflow.com/questions/771918/how-do-i-do-word-stemming-or-lemmatization
         """
-        if not os.path.isdir(os.path.join(current_dir, 'corpora/wordnet')):
-            import nltk
-            nltk.download(info_or_id='wordnet', download_dir=current_dir)
+        self.nltk_download('wordnet')
 
         from nltk.stem.wordnet import WordNetLemmatizer
         lmtzr = WordNetLemmatizer()
@@ -78,6 +78,11 @@ class LazyData(object):
     def tagged_words__dict(self):
         import nltk
         return {w1:t1.upper() for w1, t1 in nltk.corpus.brown.tagged_words()}
+
+    def nltk_download(self, package):
+        if not os.path.isdir(os.path.join(current_dir, 'corpora', package)):
+            import nltk
+            nltk.download(info_or_id=package, download_dir=current_dir)
 
 
 

@@ -11,7 +11,7 @@ def cpickle_cache(filename, func1, quiet=False):
 
     questions = cpickle_cache(pickle_filename, load_questions_func)
     """
-    return cPickleCache(filename, func1).process()
+    return cPickleCache(filename, func1, quiet).process()
 
 
 class cPickleCache(object):
