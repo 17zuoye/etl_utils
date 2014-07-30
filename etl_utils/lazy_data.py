@@ -48,8 +48,9 @@ class LazyData(object):
                             ] \
                         ))))
 
-            regular_words_data = marisa_trie.Trie([unicode(w1) \
-                    for w1 in nltk.corpus.abc.words() if regexp.word.match(w1)])
+            regular_words_data = marisa_trie.Trie([ \
+                    unicode(w1) for w1 in words if regexp.word.match(w1)])
+
             return [two_length_words_data, regular_words_data]
 
         return cpickle_cache(current_dir + "/nltk_abc.cPickle", \
@@ -83,7 +84,7 @@ class LazyData(object):
 
     @cached_property
     def tagged_words__dict(self):
-        import nltk
+        self.nltk_download('brown')
         return {w1:t1.upper() for w1, t1 in nltk.corpus.brown.tagged_words()}
 
     def nltk_download(self, package):
