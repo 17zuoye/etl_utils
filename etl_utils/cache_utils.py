@@ -21,14 +21,14 @@ class cPickleCache(object):
 
     def process(self):
         tb = time.time()
-        cprint(u"[%s] " % self.filename, end='')
+        cprint(u"[%s] " % self.filename, 'blue', end='')
 
         if os.path.isfile(self.filename):
-            cprint(u"cache is already exists!", end='')
+            cprint(u"cache is already exists!", 'blue', end='')
             result = cPickle.load(open(self.filename, 'rb'))
         else:
-            cprint(u"generating cache ...", end='')
+            cprint(u"generating cache ...", 'blue', end='')
             result = self.func()
             cPickle.dump(result, open(self.filename, 'wb'))
-        cprint(" load in %2.2f sec" % (time.time()-tb))
+        cprint(" load in %2.2f sec" % (time.time()-tb), 'blue')
         return result
