@@ -44,6 +44,8 @@ class ProcessNotifier(object):
 
         for record in self.iterator():
             process_count += 1
+            # Fix grow up when iterator
+            if process_count > self.scope_count: process_count = self.scope_count
             if self.scope_count: self.pbar.update(process_count)
             yield record
         print
@@ -62,8 +64,3 @@ class ItemProcessSpeed(pb.ProgressBarWidget):
 
 def process_notifier(scope, per1=1000):
     return ProcessNotifier(scope, per1).generator()
-
-if __name__=='__main__':
-    import time
-    for i1 in process_notifier(range(500)):
-        time.sleep(0.01)

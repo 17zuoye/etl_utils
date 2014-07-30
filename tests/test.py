@@ -108,4 +108,11 @@ class TestPhrasalRecognizer(unittest.TestCase):
                 [[[1], [2], [3, 4, 5]], [[1], [2, 3], [4, 5]], [[1], [2, 3, 4], \
                 [5]], [[1, 2], [3], [4, 5]], [[1, 2], [3, 4], [5]], [[1, 2, 3], [4], [5]]])
 
+    def test_process_notifier(self):
+        import time
+        print "\nbegin test_process_notifier"
+        for i1 in process_notifier(range(500)):
+            time.sleep(0.005)
+        print "end test_process_notifier"
+
 if __name__ == '__main__': unittest.main()
