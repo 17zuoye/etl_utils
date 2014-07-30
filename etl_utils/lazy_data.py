@@ -24,30 +24,37 @@ class LazyData(object):
         检查 2个字符 的字符组 是否是正常单词 或 词组
         e.g. `"At" in two_length_words`
         """
-        def load__two_length_words__func():
+        return self.nltk_abc_data[0]
+
+    @cached_property
+    def regular_words(self): return self.nltk_abc_data[1]
+
+    @cached_property
+    def nltk_abc_data(self):
+        self.nltk_download('abc')
+        def load__nltk_abc_data__func():
             import nltk
             import marisa_trie
-            return marisa_trie.Trie( \
+            from .regexp_utils import regexp
+            words = nltk.corpus.abc.words()
+
+            two_length_words_data = marisa_trie.Trie( \
                         sorted( \
                         list( \
                         set(\
-                            [w1 for w1 in nltk.corpus.abc.words() \
+                            [w1 for w1 in words \
                                 if (len(w1) == 2) and \
                                     re.compile("[a-z]", re.IGNORECASE).match(w1[0]) \
                             ] \
                         ))))
 
+            regular_words_data = marisa_trie.Trie([unicode(w1) \
+                    for w1 in nltk.corpus.abc.words() if regexp.word.match(w1)])
+            return [two_length_words_data, regular_words_data]
 
-        return cpickle_cache(current_dir + "/two_length_words.cPickle", \
-                load__two_length_words__func, True)
+        return cpickle_cache(current_dir + "/nltk_abc.cPickle", \
+                load__nltk_abc_data__func, True)
 
-    @cached_property
-    def regular_words(self):
-        import nltk
-        import marisa_trie
-        from .regexp_utils import regexp
-        self.nltk_download('abc')
-        return marisa_trie.Trie([unicode(w1) for w1 in nltk.corpus.abc.words() if regexp.word.match(w1)])
 
     @cached_property
     def lemmatize(self):
