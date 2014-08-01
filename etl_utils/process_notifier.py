@@ -21,8 +21,9 @@ class ProcessNotifier(object):
         self.current_pid = os.getpid()
         self.per = per1
 
-        # 兼容 list和dict
-        self.scope_count = len(self.scope) if hasattr(self.scope, '__len__') else self.scope.count()
+        # 兼容 list, dict, mongomock
+        # TestModel mongomock.Connection().db.TestModel.count()
+        self.scope_count = len(self.scope) if ('__len__' in dir(self.scope)) else self.scope.count()
 
 
     def iterator(self):

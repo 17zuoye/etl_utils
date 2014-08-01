@@ -117,4 +117,7 @@ class TestPhrasalRecognizer(unittest.TestCase):
             time.sleep(0.005)
         print "end test_process_notifier"
 
+        import mongomock
+        process_notifier(mongomock.Connection().db.TestModel)
+
 if __name__ == '__main__': unittest.main()
