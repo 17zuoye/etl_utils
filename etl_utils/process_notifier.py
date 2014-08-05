@@ -22,8 +22,10 @@ class ProcessNotifier(object):
         self.per = per1
 
         # 兼容 list, dict, mongomock
-        # TestModel mongomock.Connection().db.TestModel.count()
-        self.scope_count = len(self.scope) if ('__len__' in dir(self.scope)) else self.scope.count()
+        is_dict_or_list = hasattr(scope, '__len__') and isinstance(scope, (list, dict))
+        is_mongo = hasattr(scope, 'count') and not is_dict_or_list
+        if is_dict_or_list: self.scope_count = len(scope)
+        if is_mongo:        self.scope_count = scope.count()
 
 
     def iterator(self):
