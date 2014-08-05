@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os
+import os, re
 import progressbar as pb
 
 
@@ -22,24 +22,15 @@ class ProcessNotifier(object):
         self.per = per1
 
         # 兼容 list, dict, mongomock
-        # is_dict_or_list = hasattr(scope, '__len__') and hasattr(scope, '__contains__') and hasattr(scope, '__getitem__') 无效
-        is_dict_or_list = False
-        # 不用担心dict()和list()内存使用情况，使用的都是要使用的，不可使用的，也执行不了
-        try:
-            dict(scope)
-            is_dict_or_list = True
-        except:
-             pass
-        try:
-            list(scope)
-            is_dict_or_list = True
-        except:
-             pass
-
-        if is_dict_or_list:
-            self.scope_count = len(scope)
-        else:
-            self.scope_count = scope.count()
+        # 判断这个对象的属性方法来觉得用len还是count，不能覆盖所有情况，所以这里直接暴力解决。
+        self.scope_count = None
+        for lambda1 in [ lambda : len(scope), lambda : scope.count()]:
+            if self.scope_count is None:
+                try:
+                    self.scope_count = lambda1()
+                except:
+                    pass
+        assert self.scope_count is not None
 
 
     def iterator(self):
