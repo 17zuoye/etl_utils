@@ -35,8 +35,14 @@ class ProcessNotifier(object):
 
 
     def iterator(self):
-        if 'iterator' in dir(self.scope)        : return self.scope.iterator()
-        if 'itervalues' in dir(self.scope)      : return self.scope.itervalues()
+        try:
+            self.scope = self.scope.iteritems()
+        except:
+            pass
+        try:
+            self.scope = self.scope.iterator()
+        except:
+            pass
         return self.scope
 
     def generator(self):
