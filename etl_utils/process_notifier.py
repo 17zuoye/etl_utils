@@ -22,10 +22,24 @@ class ProcessNotifier(object):
         self.per = per1
 
         # 兼容 list, dict, mongomock
-        is_dict_or_list = hasattr(scope, '__len__') and isinstance(scope, (list, dict))
-        is_mongo = hasattr(scope, 'count') and not is_dict_or_list
-        if is_dict_or_list: self.scope_count = len(scope)
-        if is_mongo:        self.scope_count = scope.count()
+        # is_dict_or_list = hasattr(scope, '__len__') and hasattr(scope, '__contains__') and hasattr(scope, '__getitem__') 无效
+        is_dict_or_list = False
+        # 不用担心dict()和list()内存使用情况，使用的都是要使用的，不可使用的，也执行不了
+        try:
+            dict(scope)
+            is_dict_or_list = True
+        except:
+             pass
+        try:
+            list(scope)
+            is_dict_or_list = True
+        except:
+             pass
+
+        if is_dict_or_list:
+            self.scope_count = len(scope)
+        else:
+            self.scope_count = scope.count()
 
 
     def iterator(self):
