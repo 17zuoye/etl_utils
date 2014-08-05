@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os, re
+import os
 import progressbar as pb
 
 
@@ -12,14 +12,15 @@ class ProcessNotifier(object):
         # do b1
     """
 
-    def __init__(self, scope, per1):
+    def __init__(self, scope, per, msg):
         """ TypeError: __init__() should return None, not 'generator' """
         if hasattr(scope, 'count') or isinstance(scope, list) or hasattr(scope, 'itervalues') or hasattr(scope, 'iterator'):
             self.scope = scope
         else:
             raise Exception(u"%s should be iteratable", str(scope))
         self.current_pid = os.getpid()
-        self.per = per1
+        self.per = per
+        self.msg = msg
 
         # 兼容 list, dict, mongomock
         # 判断这个对象的属性方法来觉得用len还是count，不能覆盖所有情况，所以这里直接暴力解决。
@@ -40,11 +41,11 @@ class ProcessNotifier(object):
 
     def generator(self):
         """ Use a Generator to print the inner status when iterate a scope."""
-        base_str = "[pid %i] To loading %i records " % (self.current_pid, self.scope_count)
+        base_str = u"[pid %i] %s processing %i records " % (self.current_pid, self.msg, self.scope_count)
 
         process_count = 0
 
-        widgets = ['  ', base_str, pb.Percentage(), ' ', pb.Bar(),
+        widgets = ['  ', base_str.encode("UTF-8"), pb.Percentage(), ' ', pb.Bar(),
                    ' ', ItemProcessSpeed()]
 
         if self.scope_count:
@@ -70,5 +71,6 @@ class ItemProcessSpeed(pb.ProgressBarWidget):
         return self.fmt % bps
 
 
-def process_notifier(scope, per1=1000):
-    return ProcessNotifier(scope, per1).generator()
+def process_notifier(scope, per=1000, msg=u"",):
+    assert isinstance(msg, unicode)
+    return ProcessNotifier(scope, per, msg).generator()
