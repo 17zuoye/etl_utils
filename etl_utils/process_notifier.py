@@ -25,7 +25,7 @@ class ProcessNotifier(object):
             assert getattr(self, name) is not None, (unicode(scope) + u" " + msg)
 
         set_default_value('iterator', \
-                          [lambda: iter(scope), lambda : scope.iteritems(), lambda : scope.iterator()], \
+                          [lambda : scope.iteritems(), lambda : scope.iterator(), lambda: iter(scope), ], \
                           u"should be iteratable!")
 
         self.current_pid = os.getpid()
