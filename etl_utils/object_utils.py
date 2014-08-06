@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
-def set_default_value(obj, name, lambdas, msg=u""):
-    setattr(obj, name, None)
+def set_default_value(lambdas, msg=u""):
+    val = None
     for lambda1 in lambdas:
-        if getattr(obj, name) is None:
+        if val is None:
             try:
-                setattr(obj, name, lambda1())
+                val = lambda1()
             except:
                 pass
-    assert getattr(obj, name) is not None, msg
+    assert val is not None, msg
+    return val

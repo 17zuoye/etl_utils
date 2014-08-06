@@ -16,9 +16,9 @@ class ProcessNotifier(object):
         """ TypeError: __init__() should return None, not 'generator' """
         from .object_utils import set_default_value
 
-        set_default_value(self, 'iterator', \
-                          [lambda : scope.iteritems(), lambda : scope.iterator(), lambda: iter(scope), ], \
-                          unicode(scope) + u" should be iteratable!")
+        self.iterator = set_default_value(
+              [lambda : scope.iteritems(), lambda : scope.iterator(), lambda: iter(scope), ], \
+              unicode(scope) + u" should be iteratable!")
 
         self.current_pid = os.getpid()
         self.per = per
@@ -26,9 +26,9 @@ class ProcessNotifier(object):
 
         # 兼容 list, dict, mongomock
         # 判断这个对象的属性方法来觉得用len还是count，不能覆盖所有情况，所以这里直接暴力解决。
-        set_default_value(self, 'total_count', \
-                          [ lambda : len(scope), lambda : scope.count()], \
-                          unicode(scope) + u" should be counted!")
+        self.total_count = set_default_value( \
+              [ lambda : len(scope), lambda : scope.count()], \
+              unicode(scope) + u" should be counted!")
 
 
     def generator(self):
