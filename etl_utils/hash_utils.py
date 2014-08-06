@@ -3,7 +3,7 @@
 import hashlib
 
 from .regexp_utils import regexp
-from singleton import singleton
+from .design_pattern import singleton
 
 @singleton()
 class HashUtilsClass(object):

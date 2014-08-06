@@ -2,7 +2,7 @@
 
 import re
 from .cache_utils import cached_property
-from singleton import singleton
+from .design_pattern import singleton
 
 @singleton()
 class RegexpUtils(object):

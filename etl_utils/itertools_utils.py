@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from singleton import singleton
+from .design_pattern import singleton
 
 @singleton()
 class ItertoolsUtilsClass(object):

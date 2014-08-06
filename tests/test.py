@@ -121,4 +121,11 @@ class TestPhrasalRecognizer(unittest.TestCase):
         scope = mongomock.Connection().db.TestModel
         process_notifier(scope, msg=u"MONGODB")
 
+    def test_design_pattern(self):
+        class Foo(object):
+            @classproperty
+            def bar(cls):
+                return [1]
+        self.assertEqual(Foo.bar, [1])
+
 if __name__ == '__main__': unittest.main()
