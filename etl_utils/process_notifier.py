@@ -14,20 +14,19 @@ class ProcessNotifier(object):
 
     def __init__(self, scope, per, msg):
         """ TypeError: __init__() should return None, not 'generator' """
-        self.iterator = None
-        try:
-            self.iterator = scope.iteritems()
-        except:
-            pass
-        try:
-            self.iterator = scope.iterator()
-        except:
-            pass
-        try:
-            self.iterator = iter(scope)
-        except:
-            pass
-        assert self.iterator, (u"%s should be iteratable" % str(scope))
+        def set_default_value(name, lambdas, msg):
+            setattr(self, name, None)
+            for lambda1 in lambdas:
+                if getattr(self, name) is None:
+                    try:
+                        setattr(self, name, lambda1())
+                    except:
+                        pass
+            assert getattr(self, name) is not None, (unicode(scope) + u" " + msg)
+
+        set_default_value('iterator', \
+                          [lambda: iter(scope), lambda : scope.iteritems(), lambda : scope.iterator()], \
+                          u"should be iteratable!")
 
         self.current_pid = os.getpid()
         self.per = per
@@ -35,14 +34,9 @@ class ProcessNotifier(object):
 
         # 兼容 list, dict, mongomock
         # 判断这个对象的属性方法来觉得用len还是count，不能覆盖所有情况，所以这里直接暴力解决。
-        self.total_count = None
-        for lambda1 in [ lambda : len(scope), lambda : scope.count()]:
-            if self.total_count is None:
-                try:
-                    self.total_count = lambda1()
-                except:
-                    pass
-        assert self.total_count is not None
+        set_default_value('total_count', \
+                          [ lambda : len(scope), lambda : scope.count()], \
+                          u"should be counted!")
 
 
     def generator(self):
