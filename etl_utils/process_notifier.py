@@ -16,9 +16,11 @@ class ProcessNotifier(object):
         """ TypeError: __init__() should return None, not 'generator' """
         from .object_utils import set_default_value
 
+        scope_repr = unicode(repr(type(scope)))
+
         self.iterator = set_default_value(
               [lambda : scope.iteritems(), lambda : scope.iterator(), lambda: iter(scope), ], \
-              unicode(scope) + u" should be iteratable!")
+              scope_repr + u" should be iteratable!")
 
         self.current_pid = os.getpid()
         self.per = per
@@ -28,7 +30,7 @@ class ProcessNotifier(object):
         # 判断这个对象的属性方法来觉得用len还是count，不能覆盖所有情况，所以这里直接暴力解决。
         self.total_count = set_default_value( \
               [ lambda : len(scope), lambda : scope.count()], \
-              unicode(scope) + u" should be counted!")
+              scope_repr + u" should be counted!")
 
 
     def generator(self):
