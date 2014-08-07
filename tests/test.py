@@ -128,4 +128,13 @@ class TestPhrasalRecognizer(unittest.TestCase):
                 return [1]
         self.assertEqual(Foo.bar, [1])
 
+    def test_set_default_value(self):
+        scope = range(100)
+
+        v1 = set_default_value(
+                [lambda : scope.iteritems(), lambda : scope.iterator(), lambda: iter(scope), lambda : None], \
+                  unicode(scope) + u" should be iteratable!")
+        self.assertEqual(type(v1).__name__, 'listiterator')
+
+
 if __name__ == '__main__': unittest.main()

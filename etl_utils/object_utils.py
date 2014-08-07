@@ -7,6 +7,6 @@ def set_default_value(lambdas, msg=u""):
             try:
                 val = lambda1()
             except:
-                pass
+                continue
     assert val is not None, msg
     return val
