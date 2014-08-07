@@ -6,21 +6,25 @@ from singleton import singleton
 class ClassPropertyDescriptor(object):
 
     def __init__(self, func, name=None, doc=None):
-        original_func = func.__func__
+        self.func               = func.__func__
+        self.__name__           = name or self.func.__name__
+        self.__module__         = self.func.__module__
+        self.__doc__            = doc or self.func.__doc__
 
-        self.__name__ = name or original_func.__name__
-        self.__module__ = original_func.__module__
-        self.__doc__ = doc or original_func.__doc__
-        self.func = original_func
+        # 改用self.is_cached替换ClassPropertyDescriptor, 后者在类上使用装饰器时会失效
+        self.is_cached          = False
 
     def __get__(self, obj, klass=None):
         if klass is None:
             klass = type(obj)
-        value = klass.__dict__.get(self.__name__)
-        if isinstance(value, ClassPropertyDescriptor):
+
+        if self.is_cached:
+            return klass.__dict__.get(self.__name__)
+        else:
             value = self.func(klass)
             setattr(klass, self.__name__, value)
-        return value
+            self.is_cached = True
+            return value
 
 
 def classproperty(func):
