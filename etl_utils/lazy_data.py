@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import os, re
-from .cache_utils import cpickle_cache, cached_property
+from .cache_utils import cpickle_cache
 from ._current_dir import current_dir
-from .design_pattern import singleton
+from .design_pattern import singleton ,cached_property
 
 @singleton()
 class LazyData(object):

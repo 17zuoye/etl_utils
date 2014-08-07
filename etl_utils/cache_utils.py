@@ -3,8 +3,6 @@
 import os, sys, time, cPickle
 from termcolor import cprint
 
-from werkzeug.utils import cached_property
-
 def cpickle_cache(filename, func1, quiet=False):
     """
     Usage:

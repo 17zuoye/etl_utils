@@ -122,11 +122,15 @@ class TestPhrasalRecognizer(unittest.TestCase):
         process_notifier(scope, msg=u"MONGODB")
 
     def test_design_pattern(self):
-        class Foo(object):
+        o1 = object()
+
+        class Foo():
+
             @classproperty
             def bar(cls):
-                return [1]
-        self.assertEqual(Foo.bar, [1])
+                return o1
+
+        self.assertEqual(Foo.bar, o1)
 
     def test_set_default_value(self):
         scope = range(100)

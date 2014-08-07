@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import re
-from .cache_utils import cached_property
-from .design_pattern import singleton
+from .design_pattern import singleton, cached_property
 
 @singleton()
 class RegexpUtils(object):

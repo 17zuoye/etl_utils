@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from .buffer_logger import BufferLogger
-from .cache_utils import cpickle_cache, cached_property
+from .cache_utils import cpickle_cache
 from .list_utils import most_common_inspect, uniq_seqs
 from .process_notifier import process_notifier
 from .speed import Speed
@@ -19,5 +19,5 @@ from .unicode_utils import Unicode
 from .entropy import calculate_entropy
 from .hash_utils import HashUtils
 from .itertools_utils import ItertoolsUtils
-from .design_pattern import singleton, classproperty
+from .design_pattern import singleton, classproperty, cached_property, environ_property
 from .object_utils import set_default_value

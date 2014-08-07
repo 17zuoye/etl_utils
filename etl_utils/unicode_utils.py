@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .cache_utils import cached_property
+from .design_pattern import cached_property
 
 class UnicodeConvert(object):
     """
