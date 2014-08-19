@@ -21,3 +21,4 @@ from .hash_utils import HashUtils
 from .itertools_utils import ItertoolsUtils
 from .design_pattern import singleton, classproperty, cached_property, environ_property
 from .object_utils import set_default_value
+from .console_utils import uprint
