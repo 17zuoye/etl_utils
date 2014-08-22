@@ -140,5 +140,9 @@ class TestPhrasalRecognizer(unittest.TestCase):
                   unicode(scope) + u" should be iteratable!")
         self.assertEqual(type(v1).__name__, 'listiterator')
 
+    def test_console_utils(self):
+        d1 = {"a": u"你", "b": u"好"}
+        self.assertEqual(uprint(d1, d1), u"{'a': u'\u4f60', 'b': u'\u597d'}, {'a': u'\u4f60', 'b': u'\u597d'}")
+
 
 if __name__ == '__main__': unittest.main()
