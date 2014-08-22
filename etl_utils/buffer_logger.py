@@ -37,7 +37,6 @@ class BufferLogger(object):
         # copied from http://kenby.iteye.com/blog/1162698
         # 创建一个logger
         self.logger = logging.getLogger()
-        self.logger.setLevel(logging.DEBUG)
 
         # 创建一个handler，用于写入日志文件
         fh = logging.FileHandler(logger_file_name)
@@ -45,7 +44,6 @@ class BufferLogger(object):
 
         # 再创建一个handler，用于输出到控制台
         ch = logging.StreamHandler()
-        ch.setLevel(logging.DEBUG)
 
         # 定义handler的输出格式
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
