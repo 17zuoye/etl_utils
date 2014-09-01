@@ -80,14 +80,14 @@ class String(object):
 
 
     @classmethod
-    def frequence_chars_info(self, str1, length=None):
+    def frequence_chars_info(self, str1, length_lambda=lambda len1 : len1):
         """
         String.frequence_chars_info("hello world") # => {'uniq_chars__len': 8, 'sorted_freq_chars': ' delo'}
         """
         # 兼容unicode split
         if isinstance(str1, str): str1 = unicode(str1, "UTF-8")
         str_unicode_len = len(str1)
-        default_length  = length or int(round(math.sqrt(str_unicode_len)))
+        default_length  = length_lambda(int(round(math.sqrt(str_unicode_len))))
 
         result = collections.Counter((str1 or "").lower())
 
