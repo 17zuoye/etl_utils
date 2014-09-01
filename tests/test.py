@@ -77,6 +77,8 @@ class TestPhrasalRecognizer(unittest.TestCase):
         func(u"在", u"、")
         func(u"Ruby vs Python", u"中文 、 Python")
 
+        self.assertEqual(String.frequence_chars_info("hello world"), {'uniq_chars__len': 8, 'sorted_freq_chars': 'lo '})
+
     def test_calculate_entropy(self):
         data = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
         self.assertTrue(calculate_entropy(data) > 1)

@@ -81,17 +81,15 @@ class String(object):
 
     @classmethod
     def frequence_chars_info(self, str1, length_lambda=lambda len1 : len1):
-        """
-        String.frequence_chars_info("hello world") # => {'uniq_chars__len': 8, 'sorted_freq_chars': ' delo'}
-        """
         # 兼容unicode split
         if isinstance(str1, str): str1 = unicode(str1, "UTF-8")
         str_unicode_len = len(str1)
         default_length  = length_lambda(int(round(math.sqrt(str_unicode_len))))
+        result1 = collections.Counter((str1 or "").lower())
 
-        result = collections.Counter((str1 or "").lower())
+        result2 = [t1[1] for t1 in sorted([(-t2, t1) for t1, t2 in result1.most_common()])]
 
         return {
-                "sorted_freq_chars" : ''.join([i1[0] for i1 in sorted(result.most_common())[0:default_length]]),
-                "uniq_chars__len" : len(result.keys()) }
+                "sorted_freq_chars" : ''.join(result2)[0:default_length],
+                "uniq_chars__len" : len(result2) }
 
