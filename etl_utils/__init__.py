@@ -10,7 +10,7 @@ from .items_group_and_indexes import ItemsGroupAndIndexes
 from .item_increment_id_dict import ItemIncrementIdDict
 from .math_utils import MathUtils
 from .xml import TextArrayXMLParser
-from .dict_utils import dict_nested_read
+from .dict_utils import DictUtils
 from .extract_words import is_nltk_word, extract_words
 from .regexp_utils import regexp
 from .nlp import is_regular_word, jieba_parse
