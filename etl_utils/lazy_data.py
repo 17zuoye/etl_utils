@@ -15,6 +15,7 @@ class LazyData(object):
         >>> en_us_dict.check(u"跑")
         True
         """
+        # `pip install pyenchant`
         import enchant
         return enchant.Dict("en_US")
 
@@ -33,6 +34,7 @@ class LazyData(object):
     def nltk_abc_data(self):
         nltk = self.nltk_download('abc')
         def load__nltk_abc_data__func():
+            # `pip install marisa_trie`
             import marisa_trie
             from .regexp_utils import regexp
             words = nltk.corpus.abc.words()
@@ -85,6 +87,7 @@ class LazyData(object):
         return {w1:t1.upper() for w1, t1 in nltk.corpus.brown.tagged_words()}
 
     def nltk_download(self, package):
+        # `pip install nltk`
         import nltk
         if nltk.data.path[0] != current_dir:
             nltk.data.path.insert(0, current_dir)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .design_pattern import cached_property
+from .design_pattern import cached_property, singleton
 
 _ = u""
 
@@ -108,6 +108,7 @@ class UnicodeWidth(object):
         """
         兼容中文和全角字符的对齐打印。Compact with chinese ajust.
         """
+        # `pip install urwid`
         from urwid import is_wide_char
         def func(str1, method, width, fillchar):
             if isinstance(str1, str): str1 = unicode(str1, "UTF-8")
@@ -121,7 +122,6 @@ class UnicodeFile(object):
     def read(self, filename):
         return open(filename).read().decode("UTF-8")
 
-from .design_pattern import singleton
 
 @singleton()
 class UnicodeClass(UnicodeConvert, UnicodeWidth, UnicodeFile):

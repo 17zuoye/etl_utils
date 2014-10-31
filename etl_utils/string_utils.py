@@ -84,7 +84,7 @@ class String(object):
         # 兼容unicode split
         if isinstance(str1, str): str1 = unicode(str1, "UTF-8")
         str_unicode_len = len(str1)
-        default_length  = length_lambda(int(round(math.sqrt(str_unicode_len))))
+        default_length  = int(round(length_lambda(math.sqrt(str_unicode_len))))
         result1 = collections.Counter((str1 or "").lower())
 
         result2 = [t1[1] for t1 in sorted([(-t2, t1) for t1, t2 in result1.most_common()])]
