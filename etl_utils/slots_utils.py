@@ -4,7 +4,8 @@ import functools
 __all__ = ['slots_with_pickle']
 
 
-class SlotPickleMixin(object):
+# dont inherit from object, so no __init__ method
+class SlotPickleMixin:
     """This mixin makes it possible to pickle/unpickle objects with __slots__ defined.
 
     In many programs, one or a few classes have a very large number of instances.
