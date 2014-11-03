@@ -8,8 +8,17 @@ import unittest
 
 from etl_utils import *
 
+# 1. test opts
 inspect = False
 
+# 2. test class
+@slots_with_pickle('a', 'b', 'c')
+class Slots(object):
+    attr_a = 'a'
+    attr_b = 'b'
+    attr_c = 'c'
+
+# 3. test cases
 class TestPhrasalRecognizer(unittest.TestCase):
     def test_Unicode(self):
         self.assertTrue(Unicode.is_chinese(u"你"))
@@ -142,13 +151,23 @@ class TestPhrasalRecognizer(unittest.TestCase):
         scope = range(100)
 
         v1 = set_default_value(
-                [lambda : scope.iteritems(), lambda : scope.iterator(), lambda: iter(scope), lambda : None], \
-                  unicode(scope) + u" should be iteratable!")
+                [lambda : scope.iteritems(), lambda : scope.iterator(), \
+                 lambda: iter(scope), lambda : None], \
+                 unicode(scope) + u" should be iteratable!")
         self.assertEqual(type(v1).__name__, 'listiterator')
 
     def test_console_utils(self):
         d1 = {"a": u"你", "b": u"好"}
         self.assertEqual(uprint(d1, d1), u"{'a': u'\u4f60', 'b': u'\u597d'}, {'a': u'\u4f60', 'b': u'\u597d'}")
+
+    def test_slots_with_pickle(self):
+        slots = [Slots() for idx1 in xrange(1000)]
+
+        # mimic pickle and upickle
+        file1 = root_dir + '/tests/test_slots_with_pickle.cPickle'
+        cpickle_cache(file1, lambda : slots)
+        self.assertEqual(len(slots), len(cpickle_cache(file1, lambda : not_exists)))
+        os.remove(file1)
 
 
 if __name__ == '__main__': unittest.main()

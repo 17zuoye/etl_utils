@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='etl_utils',
-    version='0.0.10',
+    version='0.0.11',
     url='http://github.com/mvj3/etl_utils/',
     license='MIT',
     author='David Chen',
@@ -17,9 +17,8 @@ setup(
     platforms='any',
     install_requires=[
         'werkzeug',
-        'progressbar',
+        'progressbar == 2.2', # 和目前 2.3 版本 API 更改了 20141103
         'termcolor',
-        'jieba',
         'pysingleton',
     ],
     classifiers=[

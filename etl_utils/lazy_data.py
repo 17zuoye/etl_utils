@@ -96,6 +96,10 @@ class LazyData(object):
             nltk.download(info_or_id=package, download_dir=current_dir)
         return nltk
 
+    @cached_property
+    def jieba(self):
+        import jieba
+        return jieba
 
 
 ld = LazyData()
