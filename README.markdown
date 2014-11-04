@@ -36,8 +36,8 @@ class Universe:
     def answer(self):
         return 42
 
-universe = Universe()
-assert universe.answer, 42 // True
+answer = Universe().answer # no ()
+assert answer, 42 // True
 ```
 
 #### `classproperty`
