@@ -4,8 +4,8 @@ from setuptools import setup
 
 setup(
     name='etl_utils',
-    version='0.0.12',
-    url='http://github.com/mvj3/etl_utils/',
+    version='0.1.0',
+    url='http://github.com/17zuoye/etl_utils/',
     license='MIT',
     author='David Chen',
     author_email=''.join(reversed("moc.liamg@emojvm")),
