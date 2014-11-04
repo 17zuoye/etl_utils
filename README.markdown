@@ -2,18 +2,23 @@ ETL Architecture
 ========================
 All API are listed in `etl_utils/__init__.py`.
 
-Feature List
+Usage
 ------------------------
 
-## Import `etl_utils`
+Install it.
+```bash
+pip install etl_utils
+```
 
+Import it.
 ```python
 from etl_utils import *
 ```
 
+Feature List
+------------------------
+
 ## Cache
-
-
 
 #### `cpickle_cache` function
 ```python
