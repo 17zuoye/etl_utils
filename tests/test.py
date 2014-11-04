@@ -12,11 +12,12 @@ from etl_utils import *
 inspect = False
 
 # 2. test class
-@slots_with_pickle('a', 'b', 'c')
+@slots_with_pickle('attr_a', 'attr_b', 'attr_c')
 class Slots(object):
-    attr_a = 'a'
-    attr_b = 'b'
-    attr_c = 'c'
+    def __init__(self):
+        attr_a = 'a'
+        attr_b = 'b'
+        attr_c = 'c'
 
 # 3. test cases
 class TestPhrasalRecognizer(unittest.TestCase):
