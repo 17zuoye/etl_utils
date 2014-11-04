@@ -61,9 +61,10 @@ Requirements about `iteratable_object`:
 2. Exist a way to fetch total count of this `iteratable_object`.
 
 #### 2.2. `uprint`
-Python's default `print` function can deal with basic string or unicode, but
-not the Chinese string in nested dict or list. So let's transfer this
-functionality to `uprint`.
+Python's default `print` function can only deal with basic `unicode`, but not the Chinese
+`unicode` in nested dict or list. So let's transfer this functionality to `uprint`.
+
+But remember that `string` type must convert into `unicode` type, or the output will be garbled.
 
 Example:
 ```markdown
