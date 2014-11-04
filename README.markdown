@@ -20,14 +20,14 @@ Feature List
 
 ## 1. Cache
 
-#### `cpickle_cache` function
+#### 1.1. `cpickle_cache` function
 ```python
 cpickle_cache(cache_file_path, generate_data_func)
 ```
 Generate cache data if `cache_file_path` not exists.
 
 
-#### `cached_property` decorator
+#### 1.2. `cached_property` decorator
 Turn a function into a property.
 
 ```python
@@ -40,12 +40,12 @@ answer = Universe().answer # no ()
 assert answer, 42 // True
 ```
 
-#### `classproperty`
+#### 1.3. `classproperty`
 Similar to `cached_property`, but it's a property on a class itself.
 
 ## 2. Terminal
 
-#### `process_notifier`
+#### 2.1. `process_notifier`
 
 ```python
 for i1 in process_notifier(iteratable_object, msg=u"RANGE"):
@@ -60,11 +60,12 @@ Requirements about `iteratable_object`:
 1. Iteratable data structure, e.g. list like or dict like object, any orm query.
 2. Exist a way to fetch total count of this `iteratable_object`.
 
-#### `uprint`
+#### 2.2. `uprint`
 Python's default `print` function can deal with basic string or unicode, but
 not the Chinese string in nested dict or list. So let's transfer this
 functionality to `uprint`.
 
+Example:
 ```markdown
 >>> print({u"你好":u"世界"})
 {u'\u4f60\u597d': u'\u4e16\u754c'}
@@ -75,10 +76,9 @@ functionality to `uprint`.
 ```
 
 
-
 ## 3. Design Pattern
 
-#### `singleton`
+#### 3.1. `singleton`
 Singleton pattern restricts the instantiation of a class to one object,
 see more informations at [Wikipedia](http://en.wikipedia.org/wiki/Singleton_pattern) .
 
