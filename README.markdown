@@ -43,7 +43,9 @@ assert answer, 42 // True
 #### `classproperty`
 Similar to `cached_property`, but it's a property on a class itself.
 
-## 2. Progress Bar
+## 2. Terminal
+
+#### `process_notifier`
 
 ```python
 for i1 in process_notifier(iteratable_object, msg=u"RANGE"):
@@ -57,6 +59,20 @@ Requirements about `iteratable_object`:
 
 1. Iteratable data structure, e.g. list like or dict like object, any orm query.
 2. Exist a way to fetch total count of this `iteratable_object`.
+
+#### `uprint`
+Python's default `print` function can deal with basic string or unicode, but
+not the Chinese string in nested dict or list. So let's transfer this
+functionality to `uprint`.
+
+```markdown
+>>> print({u"你好":u"世界"})
+{u'\u4f60\u597d': u'\u4e16\u754c'}
+>>> from etl_utils import uprint
+>>> tmp = uprint({u"你好":u"世界"})
+{u'你好': u'世界'}
+>>>
+```
 
 
 
