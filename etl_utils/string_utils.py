@@ -4,7 +4,7 @@ import collections, re
 from .regexp_utils import regexp
 import math
 
-class String(object):
+class StringUtils(object):
 
     @classmethod
     def merge(self, *strs):
@@ -92,4 +92,3 @@ class String(object):
         return {
                 "sorted_freq_chars" : ''.join(result2)[0:default_length],
                 "uniq_chars__len" : len(result2) }
-

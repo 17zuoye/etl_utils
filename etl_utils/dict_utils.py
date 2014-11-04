@@ -30,9 +30,9 @@ class DictUtilsClass(object):
         return current_val
 
 
-    def add_default_value(self, d1, default_value=None):
+    def add_default_value(self, dict1, default_value=None):
         if default_value is None:
-            default_value = sum(d1.values()) / float(len(d1))
-        return defaultdict(lambda : default_value, d1)
+            default_value = sum(dict1.values()) / float(len(dict1))
+        return defaultdict(lambda : default_value, dict1)
 
 DictUtils = DictUtilsClass()

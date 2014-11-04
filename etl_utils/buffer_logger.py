@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from .string_utils import String
+from .string_utils import StringUtils
 
 class BufferLogger(object):
     """日志缓存管理
@@ -18,7 +18,7 @@ class BufferLogger(object):
         self.buffer1 = list()
 
     def append(self, *strs):
-        self.buffer1.append(String.merge(*strs))
+        self.buffer1.append(StringUtils.merge(*strs))
     info = append
 
     def inspect(self):
@@ -31,7 +31,7 @@ class BufferLogger(object):
         self.buffer1 = list()
 
     def p(self, *strs):
-        print String.merge(*strs)
+        print StringUtils.merge(*strs)
 
     def __init_logger__(self, logger_file_name):
         # copied from http://kenby.iteye.com/blog/1162698

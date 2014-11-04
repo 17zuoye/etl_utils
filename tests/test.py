@@ -21,17 +21,17 @@ class Slots(object):
 # 3. test cases
 class TestPhrasalRecognizer(unittest.TestCase):
     def test_Unicode(self):
-        self.assertTrue(Unicode.is_chinese(u"你"))
-        self.assertFalse(Unicode.is_chinese(u"h"))
+        self.assertTrue(UnicodeUtils.is_chinese(u"你"))
+        self.assertFalse(UnicodeUtils.is_chinese(u"h"))
 
-        self.assertTrue(Unicode.is_number(u"3"))
-        self.assertFalse(Unicode.is_number(u"a"))
+        self.assertTrue(UnicodeUtils.is_number(u"3"))
+        self.assertFalse(UnicodeUtils.is_number(u"a"))
 
-        self.assertTrue(Unicode.is_alphabet(u"h"))
-        self.assertFalse(Unicode.is_alphabet(u"3"))
+        self.assertTrue(UnicodeUtils.is_alphabet(u"h"))
+        self.assertFalse(UnicodeUtils.is_alphabet(u"3"))
 
-        self.assertTrue(Unicode.is_other(u"。"))
-        self.assertFalse(Unicode.is_other(u"a"))
+        self.assertTrue(UnicodeUtils.is_other(u"。"))
+        self.assertFalse(UnicodeUtils.is_other(u"a"))
 
         #test Q2B and B2Q
         for i in range(0x0020,0x007F):
@@ -40,18 +40,18 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
         #test uniform
         ustring=u'中国 人名ａ高频Ａ'
-        ustring=Unicode.uniform(ustring)
-        ret=Unicode.string2List(ustring)
+        ustring=UnicodeUtils.uniform(ustring)
+        ret=UnicodeUtils.string2List(ustring)
         self.assertEqual(ret, [u"中国", u"人名a高频a"])
 
-        self.assertEqual(u"@",    Unicode.stringQ2B(u"＠"))
-        self.assertEqual(u"Z",    Unicode.Q2B(u"Ｚ"))
-        self.assertEqual(u"...",  Unicode.stringQ2B(unicode("…", "UTF-8")))
-        self.assertEqual(u"'",    Unicode.stringQ2B(u"′"))
+        self.assertEqual(u"@",    UnicodeUtils.stringQ2B(u"＠"))
+        self.assertEqual(u"Z",    UnicodeUtils.Q2B(u"Ｚ"))
+        self.assertEqual(u"...",  UnicodeUtils.stringQ2B(unicode("…", "UTF-8")))
+        self.assertEqual(u"'",    UnicodeUtils.stringQ2B(u"′"))
 
         self.assertEqual(jieba_parse("精确模式"), [u"精确", u"模式"])
 
-        current_file = Unicode.read(__file__)
+        current_file = UnicodeUtils.read(__file__)
         self.assertTrue(isinstance(current_file, unicode))
 
     def test_dict_utils(self):
@@ -82,15 +82,15 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
     def test_string_utils(self):
         def func(a, b):
-            pure_english_len = Unicode.rjust(a, 20).count(' ')
-            with_chinese_len = Unicode.rjust(b, 20).count(' ')
+            pure_english_len = UnicodeUtils.rjust(a, 20).count(' ')
+            with_chinese_len = UnicodeUtils.rjust(b, 20).count(' ')
             self.assertEqual(pure_english_len, with_chinese_len)
 
         func(u"ｂ", u"你")
         func(u"在", u"、")
         func(u"Ruby vs Python", u"中文 、 Python")
 
-        self.assertEqual(String.frequence_chars_info("hello world"), {'uniq_chars__len': 8, 'sorted_freq_chars': 'lo '})
+        self.assertEqual(StringUtils.frequence_chars_info("hello world"), {'uniq_chars__len': 8, 'sorted_freq_chars': 'lo '})
 
     def test_calculate_entropy(self):
         data = {'a': 1, 'b': 2, 'c': 3, 'd': 4}

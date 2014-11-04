@@ -31,8 +31,8 @@ class UnicodeConvert(object):
     def is_other(self, uchar):
         """判断是否非汉字，数字和英文字符"""
         assert isinstance(uchar, unicode)
-        return not (Unicode.is_chinese(uchar) or Unicode.is_number(uchar) \
-                or Unicode.is_alphabet(uchar))
+        return not (UnicodeUtils.is_chinese(uchar) or UnicodeUtils.is_number(uchar) \
+                or UnicodeUtils.is_alphabet(uchar))
 
     def B2Q(self, uchar):
         """半角转全角"""
@@ -67,20 +67,20 @@ class UnicodeConvert(object):
                                          }):
         """把字符串全角转半角"""
         assert isinstance(ustring, unicode)
-        result = [Unicode.Q2B(uchar) for uchar in ustring]
+        result = [UnicodeUtils.Q2B(uchar) for uchar in ustring]
         result = [(((uchar in convert_strs) and convert_strs[uchar]) or uchar) for uchar in result]
         return _.join(result)
 
     def uniform(self, ustring):
         """格式化字符串，完成全角转半角，大写转小写的工作"""
-        return Unicode.stringQ2B(ustring).lower()
+        return UnicodeUtils.stringQ2B(ustring).lower()
 
     def string2List(self, ustring):
         """将ustring按照中文，字母，数字分开"""
         retList=[]
         utmp=[]
         for uchar in ustring:
-                if Unicode.is_other(uchar):
+                if UnicodeUtils.is_other(uchar):
                         if len(utmp)==0:
                                 continue
                         else:
@@ -127,4 +127,4 @@ class UnicodeFile(object):
 class UnicodeClass(UnicodeConvert, UnicodeWidth, UnicodeFile):
     pass
 
-Unicode = UnicodeClass()
+UnicodeUtils = UnicodeClass()
