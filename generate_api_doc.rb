@@ -34,15 +34,13 @@ end
 
 
 def generate_api_doc
-    @idx = 1
     `cat etl_utils/__init__.py`.split("\n").grep(/Utils/).each do |line1|
         match = line1.match(/from \.([a-z_]+) +import ([A-Z][a-z]+Utils)/)
         classname = match[2]
         filename  = match[1]
 
         ValidMethod.select_valid_api(filename).each do |api|
-            puts "#{@idx}. `#{classname}.#{api}`"
-            @idx += 1
+            puts "#{classname}.#{api}"
         end
     end
 end
@@ -50,4 +48,4 @@ end
 generate_api_doc
 
 # Example data is
-# 1. `ListUtils.most_common_inspect(list1)`
+# ListUtils.most_common_inspect(list1)

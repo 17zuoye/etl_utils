@@ -61,11 +61,14 @@ class UnicodeConvert(object):
                 return uchar
         return unichr(inside_code)
 
-    def stringQ2B(self, ustring, convert_strs={
-                                          unicode("…", "UTF-8") : u"...",
-                                          u"′"                  : u"'",
-                                         }):
+    def stringQ2B(self, ustring, convert_strs={}):
         """把字符串全角转半角"""
+        default_Q2B_convert = {
+                                  unicode("…", "UTF-8") : u"...",
+                                  u"′"                  : u"'",
+                              }
+        convert_strs = convert_strs or default_Q2B_convert
+
         assert isinstance(ustring, unicode)
         result = [UnicodeUtils.Q2B(uchar) for uchar in ustring]
         result = [(((uchar in convert_strs) and convert_strs[uchar]) or uchar) for uchar in result]
