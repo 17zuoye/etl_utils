@@ -12,7 +12,7 @@ pip install etl_utils
 
 Import it.
 ```python
-from etl_utils import *
+from etl_utils import * # increase only 6M memory.
 ```
 
 Feature List
