@@ -1,4 +1,4 @@
-ETL Architecture
+ETL Utils
 ========================
 All API are listed in `etl_utils/__init__.py`.
 
@@ -24,7 +24,7 @@ Feature List
 ```python
 cpickle_cache(cache_file_path, generate_data_func)
 ```
-Generate cache data if cache_file_path not exists.
+Generate cache data if `cache_file_path` not exists.
 
 
 #### `cached_property` decorator
@@ -96,7 +96,6 @@ ListUtils.uniq_seqs(seqs, uniq_lambda=None)
 StringUtils.merge(*strs)
 StringUtils.calculate_text_similarity(text1, text2, inspect=False, similar_rate_baseline=0.0, skip_special_chars=False)
 StringUtils.frequence_chars_info(str1, length_lambda=lambda len1 : len1)
-MathUtils.plus(obj1)
 DictUtils.dict_nested_read(dict1, keys, default_val=None)
 DictUtils.add_default_value(dict1, default_value=None)
 UnicodeUtils.is_chinese(uchar)
