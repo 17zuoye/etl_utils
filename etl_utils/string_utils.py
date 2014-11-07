@@ -92,3 +92,6 @@ class StringUtils(object):
         return {
                 "sorted_freq_chars" : ''.join(result2)[0:default_length],
                 "uniq_chars__len" : len(result2) }
+
+
+String = StringUtils

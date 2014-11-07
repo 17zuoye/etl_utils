@@ -47,3 +47,4 @@ class ListUtilsClass(object):
         return seqs
 
 ListUtils = ListUtilsClass()
+uniq_seqs = ListUtils.uniq_seqs

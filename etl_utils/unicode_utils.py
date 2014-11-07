@@ -131,3 +131,4 @@ class UnicodeClass(UnicodeConvert, UnicodeWidth, UnicodeFile):
     pass
 
 UnicodeUtils = UnicodeClass()
+Unicode = UnicodeUtils
