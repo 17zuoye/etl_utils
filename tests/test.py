@@ -57,7 +57,7 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
     def test_dict_utils(self):
         d1 = {"a" : {"b" : "c"} }
-        self.assertEqual(DictUtils.dict_nested_read(d1, ["a", "b"]), "c")
+        self.assertEqual(DictUtils.nested_read(d1, ["a", "b"]), "c")
 
         d2 = {"a" : 1, "b" : 2 }
         d2_1 = DictUtils.add_default_value(d2)

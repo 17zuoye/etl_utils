@@ -5,7 +5,7 @@ from collections import defaultdict
 
 @singleton()
 class DictUtilsClass(object):
-    def dict_nested_read(self, dict1, keys, default_val=None):
+    def nested_read(self, dict1, keys, default_val=None):
         if not isinstance(keys, list): keys = [keys]
 
         current_dict = dict1
