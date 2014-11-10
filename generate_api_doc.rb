@@ -2,6 +2,7 @@
 
 class ValidMethod
     DefRegexp = /  def /
+    IgnoreRegexp = /ignore$/
     attr_reader :api, :prefix_blank_length
 
     def initialize line1
@@ -15,6 +16,7 @@ class ValidMethod
 
     def self.select_valid_api filename
         method_list = `cat etl_utils/#{filename}.py`.split("\n").grep(ValidMethod::DefRegexp)
+                                                   .reject {|line1| IgnoreRegexp.match(line1) }
                                                    .map {|line1| ValidMethod.new(line1) }
 
         valid_prefix_blanks_length = method_list.map do |api|

@@ -170,5 +170,12 @@ class TestPhrasalRecognizer(unittest.TestCase):
         self.assertEqual(len(slots), len(cpickle_cache(file1, lambda : not_exists)))
         os.remove(file1)
 
+    def test_json_utils(self):
+        import json
+        class Foobar(object): # add __dict__ attr
+            def __init__(self):
+                self.unicode_value = json.loads('{"你好" : ["世界"]}')
+        self.assertEqual(JsonUtils.unicode_dump(Foobar()), u'{"unicode_value": {"\u4f60\u597d": ["\u4e16\u754c"]}}')
+
 
 if __name__ == '__main__': unittest.main()

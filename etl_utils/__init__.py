@@ -22,3 +22,4 @@ from .design_pattern import singleton, classproperty, cached_property, environ_p
 from .object_utils import set_default_value
 from .console_utils import uprint
 from .slots_utils import slots_with_pickle
+from .json_utils import JsonUtils
