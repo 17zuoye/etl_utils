@@ -34,12 +34,13 @@ class ProcessNotifier(object):
                    if not self.is_file else \
                    (u"%s {pid:%i, file:%s, size:%s}" % (self.msg, self.current_pid, self.orig_scope.name, humanize.naturalsize(self.total_count)))
 
-        process_count = 0
-
         widget_cls = FileProcessSpeed if self.is_file else ItemProcessSpeed
-
         widgets = [' ', base_str.encode("UTF-8"), pb.Percentage(), ' ', pb.Bar(),
                    ' ', widget_cls()]
+
+        process_count = 0
+        pre_process_count = 0
+        one_percent = self.total_count / 200
 
         if self.total_count:
             self.pbar = pb.ProgressBar(widgets=widgets, maxval=self.total_count).start()
@@ -48,8 +49,11 @@ class ProcessNotifier(object):
             process_count += ((len(record) + 1) if self.is_file else 1)
             # Fix grow up when iterator
             if process_count > self.total_count: process_count = self.total_count
-            if self.total_count: self.pbar.update(process_count)
+            if self.total_count and (process_count - pre_process_count > one_percent):
+                self.pbar.update(process_count)
+                pre_process_count = process_count
             yield record
+        self.pbar.update(process_count)
         print
 
 
