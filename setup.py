@@ -20,6 +20,7 @@ setup(
         'progressbar == 2.2', # 和目前 2.3 版本 API 更改了 20141103
         'termcolor',
         'pysingleton',
+        'humanize == 0.5.1',
     ],
     classifiers=[
         'Intended Audience :: Developers',

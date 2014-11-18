@@ -57,7 +57,7 @@ for i1 in process_notifier(iteratable_object, msg=u"RANGE"):
 
 Requirements about `iteratable_object`:
 
-1. Iteratable data structure, e.g. list like or dict like object, any orm query.
+1. Iteratable data structure, e.g. list like or dict like object, any orm query, or file object.
 2. Exist a way to fetch total count of this `iteratable_object`.
 
 #### 2.2. `uprint`
