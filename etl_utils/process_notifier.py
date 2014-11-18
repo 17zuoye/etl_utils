@@ -53,8 +53,10 @@ class ProcessNotifier(object):
                 self.pbar.update(process_count)
                 pre_process_count = process_count
             yield record
-        self.pbar.update(process_count)
-        print
+
+        if self.pbar:
+            self.pbar.update(process_count) # finish it.
+            print
 
 
 class ItemProcessSpeed(pb.ProgressBarWidget):
