@@ -12,7 +12,7 @@ class ProcessNotifier(object):
         # do b1
     """
 
-    def __init__(self, scope, per, msg):
+    def __init__(self, scope, msg):
         """ TypeError: __init__() should return None, not 'generator' """
         from .object_utils import set_default_value
 
@@ -23,7 +23,6 @@ class ProcessNotifier(object):
               scope_repr + u" should be iteratable!")
 
         self.current_pid = os.getpid()
-        self.per = per
         self.msg = msg
 
         # 兼容 list, dict, mongomock
@@ -65,6 +64,6 @@ class ItemProcessSpeed(pb.ProgressBarWidget):
         return self.fmt % bps
 
 
-def process_notifier(scope, per=1000, msg=u"",):
+def process_notifier(scope, msg=u"",):
     assert isinstance(msg, unicode)
-    return ProcessNotifier(scope, per, msg).generator()
+    return ProcessNotifier(scope, msg).generator()
