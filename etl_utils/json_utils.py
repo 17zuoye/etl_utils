@@ -28,11 +28,11 @@ class JsonUtilsClass(object):
 
     def unicode_dump(self, item1):
         o1 = None # init
-        if isinstance(item1, dict): o1 = item1
+        if isinstance(item1, (dict, list, int, bool, float, unicode)): o1 = item1
         if (not o1) and ('__dict__' in dir(item1)): o1 = item1.__dict__
         if o1 is None: raise Exception("%s can't be dumped" % item1)
 
-        return json.dumps(o1, cls=JSONEncoder) \
-                    .decode("unicode-escape")
+        # decode("unicode-escape") 无法兼容  " \ 等转义，而是转不回来了
+        return json.dumps(o1, cls=JSONEncoder, ensure_ascii=False)
 
 JsonUtils = JsonUtilsClass()

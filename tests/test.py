@@ -181,5 +181,8 @@ class TestPhrasalRecognizer(unittest.TestCase):
                 self.unicode_value = json.loads('{"你好" : ["世界"]}')
         self.assertEqual(JsonUtils.unicode_dump(Foobar()), u'{"unicode_value": {"\u4f60\u597d": ["\u4e16\u754c"]}}')
 
+        specify_chars = [u"\\\"", u"你好"]
+        self.assertEqual(json.loads(JsonUtils.unicode_dump(specify_chars)), specify_chars)
+
 
 if __name__ == '__main__': unittest.main()
