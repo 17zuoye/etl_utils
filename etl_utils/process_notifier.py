@@ -42,6 +42,7 @@ class ProcessNotifier(object):
         pre_process_count = 0
         one_percent = self.total_count / 200
 
+        self.pbar = None
         if self.total_count:
             self.pbar = pb.ProgressBar(widgets=widgets, maxval=self.total_count).start()
 
