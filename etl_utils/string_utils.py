@@ -36,7 +36,8 @@ class StringUtils(object):
         """
 
         # 如果只是hash就不必计算了，比如 51e9eb90a31047fb0c697413
-        if not text1 or not text2 or ((len(text1) == 24) or (len(text1) == 24)):
+        if not text1 or not text2 or \
+                regexp.object_id.match(text1): # 只要一个match其实就不用比较了
             return {"similarity_rate": 0.0, "info": ""}
 
         if skip_special_chars:
