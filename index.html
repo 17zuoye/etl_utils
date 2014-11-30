@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>ETL Utils by 17zuoye</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>ETL Utils</h1>
+        <h2>etl utils</h2>
+        <a href="https://github.com/17zuoye/etl_utils" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="etl-utils" class="anchor" href="#etl-utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>ETL Utils</h1>
+
+<p>All API are listed in <code>etl_utils/__init__.py</code>.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Install it.</p>
+
+<div class="highlight highlight-bash"><pre>pip install etl_utils</pre></div>
+
+<p>Import it.</p>
+
+<div class="highlight highlight-python"><pre><span class="pl-k">from</span> etl_utils <span class="pl-k">import</span> <span class="pl-k">*</span> <span class="pl-c"># increase only 6M memory.</span></pre></div>
+
+<h2>
+<a id="feature-list" class="anchor" href="#feature-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>Feature List</h2>
+
+<h2>
+<a id="1-cache" class="anchor" href="#1-cache" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Cache</h2>
+
+<h4>
+<a id="11-cpickle_cache-function" class="anchor" href="#11-cpickle_cache-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1. <code>cpickle_cache</code> function</h4>
+
+<div class="highlight highlight-python"><pre>cpickle_cache(cache_file_path, generate_data_func)</pre></div>
+
+<p>Generate cache data if <code>cache_file_path</code> not exists.</p>
+
+<h4>
+<a id="12-cached_property-decorator" class="anchor" href="#12-cached_property-decorator" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2. <code>cached_property</code> decorator</h4>
+
+<p>Turn a function into a property.</p>
+
+<div class="highlight highlight-python"><pre><span class="pl-st">class</span> <span class="pl-en">Universe</span>:
+    <span class="pl-en">@cached_property</span>
+    <span class="pl-st">def</span> <span class="pl-en">answer</span>(<span class="pl-vpf">self</span>):
+        <span class="pl-k">return</span> <span class="pl-c1">42</span>
+
+answer <span class="pl-k">=</span> Universe().answer <span class="pl-c"># no ()</span>
+<span class="pl-k">assert</span> answer, <span class="pl-c1">42</span> <span class="pl-k">//</span> <span class="pl-c1">True</span></pre></div>
+
+<h4>
+<a id="13-classproperty" class="anchor" href="#13-classproperty" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3. <code>classproperty</code>
+</h4>
+
+<p>Similar to <code>cached_property</code>, but it's a property on a class itself.</p>
+
+<h2>
+<a id="2-terminal" class="anchor" href="#2-terminal" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Terminal</h2>
+
+<h4>
+<a id="21-process_notifier" class="anchor" href="#21-process_notifier" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1. <code>process_notifier</code>
+</h4>
+
+<div class="highlight highlight-python"><pre><span class="pl-k">for</span> i1 <span class="pl-k">in</span> process_notifier(iteratable_object, <span class="pl-vpf">msg</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-st">u</span><span class="pl-pds">"</span>RANGE<span class="pl-pds">"</span></span>):
+    <span class="pl-c"># process(i1)</span>
+    time.sleep(<span class="pl-c1">0.005</span>)
+<span class="pl-c"># Example output is:</span>
+<span class="pl-c">#   [pid 17510] RANGE processing 500 records 100% |###################################################################################################################| 166.61 items/s</span></pre></div>
+
+<p>Requirements about <code>iteratable_object</code>:</p>
+
+<ol>
+<li>Iteratable data structure, e.g. list like or dict like object, any orm query, or file object.</li>
+<li>Exist a way to fetch total count of this <code>iteratable_object</code>.</li>
+</ol>
+
+<h4>
+<a id="22-uprint" class="anchor" href="#22-uprint" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2. <code>uprint</code>
+</h4>
+
+<p>Python's default <code>print</code> function can only deal with basic <code>unicode</code>, but not the Chinese
+<code>unicode</code> in nested dict or list. So let's transfer this functionality to <code>uprint</code>.</p>
+
+<p>But remember that <code>string</code> type must convert into <code>unicode</code> type, or the output will be garbled.</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-markdown"><pre><span class="pl-mq">&gt;<span class="pl-mq">&gt;<span class="pl-mq">&gt; print({u"你好":u"世界"})</span></span></span>
+<span class="pl-mq"><span class="pl-mq"><span class="pl-mq"></span></span></span>{u'\u4f60\u597d': u'\u4e16\u754c'}
+<span class="pl-mq">&gt;<span class="pl-mq">&gt;<span class="pl-mq">&gt; from etl_utils import uprint</span></span></span>
+<span class="pl-mq"><span class="pl-mq"><span class="pl-mq"></span></span>&gt;<span class="pl-mq">&gt;<span class="pl-mq">&gt; tmp = uprint({u"你好":u"世界"})</span></span></span>
+<span class="pl-mq"><span class="pl-mq"><span class="pl-mq"></span></span></span>{u'你好': u'世界'}
+<span class="pl-mq">&gt;<span class="pl-mq">&gt;<span class="pl-mq">&gt;</span></span></span></pre></div>
+
+<h2>
+<a id="3-design-pattern" class="anchor" href="#3-design-pattern" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Design Pattern</h2>
+
+<h4>
+<a id="31-singleton" class="anchor" href="#31-singleton" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.1. <code>singleton</code>
+</h4>
+
+<p>Singleton pattern restricts the instantiation of a class to one object,
+see more informations at <a href="http://en.wikipedia.org/wiki/Singleton_pattern">Wikipedia</a> .</p>
+
+<div class="highlight highlight-python"><pre><span class="pl-en">@</span><span class="pl-en">singleton</span>() <span class="pl-c"># or @singleton(multi_init=True)</span>
+<span class="pl-st">class</span> <span class="pl-en">MySingleton</span>(<span class="pl-e"><span class="pl-s3">object</span></span>):
+
+    <span class="pl-en">@cached_property</span>
+    <span class="pl-st">def</span> <span class="pl-en">heavy_cpu</span>(<span class="pl-vpf">self</span>):
+        <span class="pl-c"># process ...</span>
+        <span class="pl-k">return</span> cached_data
+
+    <span class="pl-st">def</span> <span class="pl-en">another_function</span>(<span class="pl-vpf">self</span>, <span class="pl-vpf">params</span>):
+        <span class="pl-k">return</span> process(params)
+
+o1 <span class="pl-k">=</span> MySingleton()
+o2 <span class="pl-k">=</span> MySingleton()
+<span class="pl-k">assert</span> o1, o2 <span class="pl-k">//</span> <span class="pl-c1">True</span></pre></div>
+
+<p>Re-import <code>MySingleton</code> package will not cause initializing <code>MySingleton</code> class twice, so you
+ can encapsulate a series of functions and data into <code>MySingleton</code> class.</p>
+
+<p>This function is thread-safe, and is imported from <a href="https://pypi.python.org/pypi/pysingleton">https://pypi.python.org/pypi/pysingleton</a> .</p>
+
+<h2>
+<a id="4-basic-data-structure-utils" class="anchor" href="#4-basic-data-structure-utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Basic data structure utils</h2>
+
+<div class="highlight highlight-python"><pre>ListUtils.most_common_inspect(list1)
+ListUtils.uniq_seqs(seqs, <span class="pl-vpf">uniq_lambda</span><span class="pl-k">=</span><span class="pl-c1">None</span>)
+StringUtils.merge(<span class="pl-k">*</span>strs)
+StringUtils.calculate_text_similarity(text1, text2, <span class="pl-vpf">inspect</span><span class="pl-k">=</span><span class="pl-c1">False</span>, <span class="pl-vpf">similar_rate_baseline</span><span class="pl-k">=</span><span class="pl-c1">0.0</span>, <span class="pl-vpf">skip_special_chars</span><span class="pl-k">=</span><span class="pl-c1">False</span>)
+StringUtils.frequence_chars_info(str1, <span class="pl-vpf">length_lambda</span><span class="pl-k">=</span><span class="pl-st">lambda</span> <span class="pl-vpf">len1</span> : len1)
+DictUtils.nested_read(dict1, keys, <span class="pl-vpf">default_val</span><span class="pl-k">=</span><span class="pl-c1">None</span>)
+DictUtils.add_default_value(dict1, <span class="pl-vpf">default_value</span><span class="pl-k">=</span><span class="pl-c1">None</span>)
+UnicodeUtils.is_chinese(uchar)
+UnicodeUtils.is_number(uchar)
+UnicodeUtils.is_alphabet(uchar)
+UnicodeUtils.is_other(uchar)
+UnicodeUtils.B2Q(uchar)
+UnicodeUtils.is_Q(uchar)
+UnicodeUtils.Q2B(uchar)
+UnicodeUtils.stringQ2B(ustring, <span class="pl-vpf">convert_strs</span><span class="pl-k">=</span>{})
+UnicodeUtils.uniform(ustring)
+UnicodeUtils.string2List(ustring)
+UnicodeUtils.ljust(str1, width, <span class="pl-vpf">fillchar</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>)
+UnicodeUtils.rjust(str1, width, <span class="pl-vpf">fillchar</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>)
+UnicodeUtils.just_str(<span class="pl-v">self</span>)
+UnicodeUtils.read(filename)
+HashUtils.hashvalue_with_sorted(str1)
+ItertoolsUtils.split_seqs_by_size(seqs1, size1, <span class="pl-vpf">inspect</span><span class="pl-k">=</span><span class="pl-c1">False</span>)
+JsonUtils.unicode_dump(item1)</pre></div>
+
+<p>generated by <code>ruby generate_api_doc.rb</code></p>
+
+<h2>
+<a id="5-lazydata" class="anchor" href="#5-lazydata" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. LazyData</h2>
+
+<p>Load data only when needed.</p>
+
+<div class="highlight highlight-python"><pre><span class="pl-k">from</span> etl_utils <span class="pl-k">import</span> ld
+ld.en_us_dict
+ld.two_length_words
+ld.regular_words
+ld.lemmatize(word1)
+ld.tagged_words__dict
+ld.jieba
+
+<span class="pl-k">from</span> etl_utils <span class="pl-k">import</span> regexp
+regexp.alphabet
+regexp.word
+regexp.upper
+regexp.object_id
+regexp.special_chars</pre></div>
+
+<h2>
+<a id="6-memory" class="anchor" href="#6-memory" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Memory</h2>
+
+<div class="highlight highlight-python"><pre><span class="pl-c"># `slots_with_pickle` decorator adding `__slots__` to these classes can</span>
+<span class="pl-c"># dramatically reduce the memory footprint, and improve execution speed</span>
+<span class="pl-c"># by eliminating the instance dictionary.</span>
+<span class="pl-c"># And it also possible to pickle/unpickle objects.</span>
+
+<span class="pl-en">@</span><span class="pl-en">slots_with_pickle</span>(<span class="pl-s1"><span class="pl-pds">'</span>attr_a<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>attr_b<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>attr_c<span class="pl-pds">'</span></span>)
+<span class="pl-st">class</span> <span class="pl-en">Slots</span>(<span class="pl-e"><span class="pl-s3">object</span></span>):
+    <span class="pl-st">def</span> <span class="pl-en"><span class="pl-s3">__init__</span></span>(<span class="pl-vpf">self</span>):
+        attr_a <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>a<span class="pl-pds">'</span></span>
+        attr_b <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>b<span class="pl-pds">'</span></span>
+        attr_c <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>c<span class="pl-pds">'</span></span></pre></div>
+
+<h2>
+<a id="7-other-utils" class="anchor" href="#7-other-utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Other utils</h2>
+
+<div class="highlight highlight-python"><pre>calculate_entropy(feature_with_count_dict)
+
+is_nltk_word(str1) <span class="pl-c"># is valid English word</span>
+extract_words(sentence)
+
+ItemIncrementIdDict <span class="pl-c"># Assign an auto increment integer to item, e.g. an object_id</span>
+ItemsGroupAndIndexes <span class="pl-c"># group result</span>
+
+MarkObjectIds <span class="pl-c"># mark processed objects group</span>
+
+<span class="pl-c"># Sequentially process lambda in `lambdas`, return the first one with no exception.</span>
+set_default_value(lambdas, <span class="pl-vpf">msg</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-st">u</span><span class="pl-pds">"</span><span class="pl-pds">"</span></span>)</pre></div>
+
+<h2>
+<a id="run-tests" class="anchor" href="#run-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run tests</h2>
+
+<div class="highlight highlight-bash"><pre>python tests/test.py</pre></div>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT. David Chen @ 17zuoye.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/17zuoye/etl_utils/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/17zuoye/etl_utils/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/17zuoye/etl_utils"></a> is maintained by <a href="https://github.com/17zuoye">17zuoye</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-57207964-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
