@@ -1,0 +1,3 @@
+jieba
+marisa_trie
+mongomock
