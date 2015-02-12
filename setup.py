@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name='etl_utils',
     version='0.1.8',
-    url='http://github.com/17zuoye/etl_utils/',
+    url='http://17zuoye.github.io/etl_utils/',
     license='MIT',
     author='David Chen',
     author_email=''.join(reversed("moc.liamg@emojvm")),

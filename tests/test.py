@@ -185,5 +185,9 @@ class TestPhrasalRecognizer(unittest.TestCase):
         specify_chars = [u"\\\"", u"你好"]
         self.assertEqual(json.loads(JsonUtils.unicode_dump(specify_chars)), specify_chars)
 
+        nested_unorder_dict_str = u"""{"z":1, "b":1, "h":1, "": {"z":1, "b":1, "h":1}}"""
+        nested_order_dict_str   = u"""{"": {"b": 1, "h": 1, "z": 1}, "b": 1, "h": 1, "z": 1}"""
+        self.assertEqual(JsonUtils.unicode_dump(json.loads(nested_unorder_dict_str)), nested_order_dict_str)
+
 
 if __name__ == '__main__': unittest.main()

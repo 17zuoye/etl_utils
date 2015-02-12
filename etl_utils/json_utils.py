@@ -21,12 +21,16 @@ class JSONEncoder(json.JSONEncoder):
             return float(obj)
         else:
             return json.JSONEncoder.default(self, obj)
+# TODO default_dict
 
 @singleton()
 class JsonUtilsClass(object):
 
 
-    def unicode_dump(self, item1):
+    def unicode_dump(self, item1, **opts1):
+        default_opt2 = {"cls":JSONEncoder, "ensure_ascii":False, "sort_keys":True}
+        default_opt2.update(opts1)
+
         o1 = None # init
         if isinstance(item1, (dict, list, int, bool, float, unicode)):
             o1 = item1
@@ -37,6 +41,6 @@ class JsonUtilsClass(object):
                 raise Exception("%s can't be dumped" % item1)
 
         # decode("unicode-escape") 无法兼容  " \ 等转义，而是转不回来了
-        return json.dumps(o1, cls=JSONEncoder, ensure_ascii=False)
+        return json.dumps(o1, **default_opt2)
 
 JsonUtils = JsonUtilsClass()
