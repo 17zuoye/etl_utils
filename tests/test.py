@@ -129,17 +129,19 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
     def test_process_notifier(self):
         import time
-        for line1 in process_notifier(file(__file__), msg=u"FILE"):
+
+        for line1 in process_notifier(file(__file__), msg=u"[test iter] FILE"):
             time.sleep(0.01)
 
-        print "\nbegin test_process_notifier"
-        for i1 in process_notifier(range(365), msg=u"RANGE"):
-            time.sleep(0.008)
-        print "end test_process_notifier"
+        for i1 in process_notifier(range(365), msg=u"[测试 iter] range"):
+            time.sleep(0.005)
 
         import mongomock
-        scope = mongomock.Connection().db.TestModel
+        scope = mongomock.Connection().db.TestModel # has no items
         process_notifier(scope, msg=u"MONGODB")
+
+        for item1 in process_notifier(iter(range(1000)), msg=u"[test endless] go "):
+            time.sleep(0.005)
 
 
     def test_design_pattern(self):
