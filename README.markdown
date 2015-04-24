@@ -1,5 +1,14 @@
 ETL Utils
 ========================
+[![Build Status](https://img.shields.io/travis/17zuoye/etl_utils/master.svg?style=flat)](https://travis-ci.org/17zuoye/etl_utils)
+[![Coverage Status](https://coveralls.io/repos/17zuoye/etl_utils/badge.svg)](https://coveralls.io/r/17zuoye/etl_utils)
+[![Health](https://landscape.io/github/17zuoye/etl_utils/master/landscape.svg?style=flat)](https://landscape.io/github/17zuoye/etl_utils/master)
+[![Download](https://img.shields.io/pypi/dm/etl_utils.svg?style=flat)](https://pypi.python.org/pypi/etl_utils)
+[![License](https://img.shields.io/pypi/l/etl_utils.svg?style=flat)](https://pypi.python.org/pypi/etl_utils)
+[![Python Versions](https://pypip.in/py_versions/etl_utils/badge.svg?style=flat)](https://pypi.python.org/pypi/etl_utils)
+
+
+
 All API are listed in `etl_utils/__init__.py`.
 
 Usage
@@ -57,8 +66,8 @@ for i1 in process_notifier(iteratable_object, msg=u"RANGE"):
 
 Requirements about `iteratable_object`:
 
-1. Iteratable data structure, e.g. list like or dict like object, any orm query, or file object.
-2. Exist a way to fetch total count of this `iteratable_object`.
+1. Iteratable data structure, e.g. generator, list like or dict like object, any orm query, or file object.
+2. Exist a way to fetch total count of this `iteratable_object`, but it's optional for lazy generator.
 
 #### 2.2. `uprint`
 Python's default `print` function can only deal with basic `unicode`, but not the Chinese
