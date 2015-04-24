@@ -27,6 +27,7 @@ before_script:
 
 script:
   - python setup.py install
+  - pip install -r requirements.txt
   - nosetests
   - coverage run --source=etl_utils setup.py test
 

@@ -1,3 +1,5 @@
 jieba
 marisa_trie
+nltk
+urwid
 mongomock
