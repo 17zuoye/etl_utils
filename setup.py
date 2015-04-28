@@ -16,8 +16,8 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
-        'werkzeug',
-        'progressbar == 2.2', # 和目前 2.3 版本 API 更改了 20141103
+        'cached_property',
+        'progressbar == 2.2',  # 和目前 2.3 版本 API 更改了 20141103
         'termcolor',
         'pysingleton',
         'humanize == 0.5.1',

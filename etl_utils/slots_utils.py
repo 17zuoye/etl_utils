@@ -6,6 +6,7 @@ __all__ = ['slots_with_pickle']
 
 # dont inherit from object, so no __init__ method
 class SlotPickleMixin:
+
     """This mixin makes it possible to pickle/unpickle objects with __slots__ defined.
 
     In many programs, one or a few classes have a very large number of instances.
@@ -18,6 +19,7 @@ class SlotPickleMixin:
     Recipe taken from:
     http://code.activestate.com/recipes/578433-mixin-for-pickling-objects-with-__slots__/
     """
+
     def __getstate__(self):
         return dict(
             (slot, getattr(self, slot))
@@ -34,12 +36,14 @@ def slots_with_pickle(*slots):
     def func(decorated_class):
         # set slots related
         setattr(decorated_class, '__slots__', slots)
-        class _class(SlotPickleMixin, decorated_class): pass
+
+        class _class(SlotPickleMixin, decorated_class):
+            pass
 
         # set orig class attrs
-        _class.__name__    = decorated_class.__name__
-        _class.__module__  = decorated_class.__module__
-        decorated_class    = _class
+        _class.__name__ = decorated_class.__name__
+        _class.__module__ = decorated_class.__module__
+        decorated_class = _class
 
         decorated_class = _class
         return decorated_class

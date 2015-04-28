@@ -3,11 +3,12 @@
 from datetime import datetime
 
 class Speed():
+
     def __init__(self):
         self.born_clock = datetime.now()
         self.last_clock = datetime.now()
 
-        self.item_count    = 0
+        self.item_count = 0
 
     def tick(self):
         self.last_clock = datetime.now()

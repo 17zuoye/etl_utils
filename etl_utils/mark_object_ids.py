@@ -3,9 +3,11 @@
 from .item_increment_id_dict import ItemIncrementIdDict
 
 class MarkObjectIds(object):
+
     """
     标记 之前这两个ObjectId是否已经被处理过
     """
+
     def __init__(self):
         self.mark_object_ids_dict = dict()
 

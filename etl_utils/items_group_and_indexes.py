@@ -1,19 +1,22 @@
 # -*- coding: utf-8 -*-
 
 class ItemsGroupAndIndexes(object):
+
     """
     用于判断 一个元素 在 一个集合中 是否已经和其中某些元素 被group过。
     """
 
     def __init__(self):
         # 存储 排重结果，类似 [[oi1, oi2], [oi8, oi9, oi10], ...]
-        self.result                           = list()
+        self.result = list()
         # 存储 单个题目ID到 [oi1, oi2] 的索引
         self.object_id_to_same_ids_index_dict = dict()
 
     def exists_between(self, item_id1, item_id2):
-        if not self.object_id_to_same_ids_index_dict.has_key(item_id1): return False
-        if not self.object_id_to_same_ids_index_dict.has_key(item_id2): return False
+        if not self.object_id_to_same_ids_index_dict.has_key(item_id1):
+            return False
+        if not self.object_id_to_same_ids_index_dict.has_key(item_id2):
+            return False
 
         return self.object_id_to_same_ids_index_dict[item_id1] == self.object_id_to_same_ids_index_dict[item_id2]
 
@@ -39,8 +42,11 @@ class ItemsGroupAndIndexes(object):
     def update(self, item_ids):
         pass
 
-    def groups_len(self) : return len(self.result)
-    def items_len(self)  : return len(self.object_id_to_same_ids_index_dict)
+    def groups_len(self):
+        return len(self.result)
+
+    def items_len(self):
+        return len(self.object_id_to_same_ids_index_dict)
 
     def result_inspect(self):
         for l1 in self.result:
@@ -50,5 +56,5 @@ class ItemsGroupAndIndexes(object):
 
     def result_json(self):
         return [
-                [(((type(i1) in [int, float]) and i1) or str(i1) ) for i1 in r1]
+            [(((type(i1) in [int, float]) and i1) or str(i1)) for i1 in r1]
             for r1 in self.result]

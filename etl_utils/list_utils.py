@@ -23,19 +23,19 @@ class ListUtilsClass(object):
 
         return cc
 
-
     def uniq_seqs(self, seqs, uniq_lambda=None):
-        if uniq_lambda is None: return list(set(seqs))
+        if uniq_lambda is None:
+            return list(set(seqs))
 
         __uniq = set([])
         __remove_idxes = []
 
         for idx1, seq1 in enumerate(seqs[:]):
-           __id = uniq_lambda(seq1)
-           if __id in __uniq:
-               __remove_idxes.append(idx1)
-           else:
-               __uniq.add(__id)
+            __id = uniq_lambda(seq1)
+            if __id in __uniq:
+                __remove_idxes.append(idx1)
+            else:
+                __uniq.add(__id)
 
         new_seqs = []
         for idx1, seq1 in enumerate(seqs[:]):

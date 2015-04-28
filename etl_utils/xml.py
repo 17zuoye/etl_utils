@@ -9,6 +9,7 @@ from .design_pattern import singleton, cached_property
 
 @singleton()
 class TextArrayXMLParserClass(object):
+
     """
     XML题目内容parse，见fullcontent.question.choice里的参考数据说明
 
@@ -17,8 +18,8 @@ class TextArrayXMLParserClass(object):
 
     def parse(self, xml1):
         str_list = [[span1.text for span1 in p1.getchildren() if span1.text]
-            # '\x1f' cause xml parser error
-            for p1 in self.etree.XML(xml1.encode("UTF-8").replace('\x1f', '')).getchildren()]
+                    # '\x1f' cause xml parser error
+                    for p1 in self.etree.XML(xml1.encode("UTF-8").replace('\x1f', '')).getchildren()]
         str_list = list(chain.from_iterable(str_list))
 
         return ' '.join(str_list)

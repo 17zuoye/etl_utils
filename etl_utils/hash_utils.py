@@ -13,7 +13,8 @@ class HashUtilsClass(object):
         str1 = regexp.special_chars.sub("", str1)
 
         # turn into `str` type
-        if isinstance(str1, unicode): str1 = str1.encode("UTF-8")
+        if isinstance(str1, unicode):
+            str1 = str1.encode("UTF-8")
 
         # sorted in ASNII
         str1 = ''.join(sorted(list(str1)))

@@ -4,6 +4,7 @@ import logging
 from .string_utils import StringUtils
 
 class BufferLogger(object):
+
     """日志缓存管理
 
     使用说明:

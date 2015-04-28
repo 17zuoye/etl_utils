@@ -7,6 +7,7 @@ import humanize
 
 
 class ProcessNotifier(object):
+
     def __init__(self, scope, msg=u""):
         """ TypeError: __init__() should return None, not 'generator' """
         from .object_utils import set_default_value
@@ -77,7 +78,7 @@ class ProcessNotifier(object):
             self.speed_str = self.counter / (current_time - begin_time)
             # "\r" means to clear current line
             sys.stdout.write((u"\r  %s {pid: %i, processed: %s items, speed: %.2f items/s . }" %
-                             (self.msg, self.current_pid, self.counter, self.speed_str)).encode("UTF-8"))
+                              (self.msg, self.current_pid, self.counter, self.speed_str)).encode("UTF-8"))
             sys.stdout.flush()
         return self.__update_status_by_item(print_current_progress_status)
 
@@ -102,6 +103,7 @@ class ProcessNotifier(object):
 
 
 class ItemProcessSpeed(pb.ProgressBarWidget):
+
     def __init__(self):
         self.fmt = '%6.2f items/s'
 
@@ -114,6 +116,7 @@ class ItemProcessSpeed(pb.ProgressBarWidget):
 
 
 class FileProcessSpeed(pb.ProgressBarWidget):
+
     def __init__(self):
         self.fmt = '%s/s'
 

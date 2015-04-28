@@ -6,6 +6,7 @@ _ = u""
 
 
 class UnicodeConvert(object):
+
     """
     汉字处理的工具:
     copied from https://github.com/oldhu/micolog-oldhu/blob/master/app/gbtools.py
@@ -38,11 +39,11 @@ class UnicodeConvert(object):
         assert isinstance(uchar, unicode)
         inside_code = ord(uchar)
         if inside_code < 0x0020 or inside_code > 0x7e:  # 不是半角字符就返回原来的字符
-                return uchar
+            return uchar
         if inside_code == 0x0020:  # 除了空格其他的全角半角的公式为:半角=全角-0xfee0
-                inside_code = 0x3000
+            inside_code = 0x3000
         else:
-                inside_code += 0xfee0
+            inside_code += 0xfee0
         return unichr(inside_code)
 
     def is_Q(self, uchar):
@@ -53,11 +54,11 @@ class UnicodeConvert(object):
         assert isinstance(uchar, unicode)
         inside_code = ord(uchar)
         if inside_code == 0x3000:
-                inside_code = 0x0020
+            inside_code = 0x0020
         else:
-                inside_code -= 0xfee0
+            inside_code -= 0xfee0
         if inside_code < 0x0020 or inside_code > 0x7e:      # 转完之后不是半角字符返回原来的字符
-                return uchar
+            return uchar
         return unichr(inside_code)
 
     def stringQ2B(self, ustring, convert_strs={}):
@@ -82,20 +83,21 @@ class UnicodeConvert(object):
         retList = []
         utmp = []
         for uchar in ustring:
-                if UnicodeUtils.is_other(uchar):
-                        if len(utmp) == 0:
-                                continue
-                        else:
-                                retList.append(_.join(utmp))
-                                utmp = []
+            if UnicodeUtils.is_other(uchar):
+                if len(utmp) == 0:
+                    continue
                 else:
-                        utmp.append(uchar)
+                    retList.append(_.join(utmp))
+                    utmp = []
+            else:
+                utmp.append(uchar)
         if len(utmp) != 0:
-                retList.append(_.join(utmp))
+            retList.append(_.join(utmp))
         return retList
 
 
 class UnicodeWidth(object):
+
     """ 处理unicode在终端下的显示宽度 """
 
     def ljust(self, str1, width, fillchar=' '):
@@ -124,12 +126,11 @@ class UnicodeWidth(object):
 
 
 class UnicodeFile(object):
+
     def read(self, filename):
         import codecs
-        text = None
-        with codecs.open(filename, 'r', encoding='utf8') as f:
-            text = f.read()
-        return text
+        fp = codecs.open(filename, "r", "utf-8")
+        return fp.read()
 
 
 @singleton()

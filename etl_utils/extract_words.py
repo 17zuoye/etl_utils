@@ -8,12 +8,13 @@ def is_nltk_word(str1):
         try:
             str1 = unicode(str1, "UTF-8")
         except:
-            return False # invalid chars
+            return False  # invalid chars
     return (str1 == u'a') or (str1 == u'I') or ((len(str1) >= 2) and (str1 in ld.regular_words))
 
 
 def extract_words(sentence):
-    if isinstance(sentence, list): sentence = ' '.join(sentence)
+    if isinstance(sentence, list):
+        sentence = ' '.join(sentence)
 
     sentence = re.compile("[^a-z]+", re.IGNORECASE).sub(" ", sentence)
     these_words = [i1.strip() for i1 in sentence.split(" ")]

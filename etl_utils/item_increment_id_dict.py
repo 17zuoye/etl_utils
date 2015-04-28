@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 class ItemIncrementIdDict(object):
+
     """ Assign an auto increment integer to item, e.g. an object_id.
 
     Usage:

@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import os, sys, time, cPickle
+import os
+import sys
+import time
+import cPickle
 from termcolor import cprint
 
 def cpickle_cache(filename, func1, quiet=False):
@@ -13,10 +16,11 @@ def cpickle_cache(filename, func1, quiet=False):
 
 
 class cPickleCache(object):
+
     def __init__(self, filename, func1, quiet=False):
         self.filename = filename
-        self.func     = func1
-        self.quiet    = quiet
+        self.func = func1
+        self.quiet = quiet
 
     def blue(self, msg, is_ender=False):
         if not self.quiet:

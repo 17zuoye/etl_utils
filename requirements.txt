@@ -1,3 +1,4 @@
+nose
 jieba
 marisa_trie
 nltk

@@ -170,7 +170,7 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
     def test_console_utils(self):
         d1 = {"a": u"你", "b": u"好"}
-        self.assertEqual(uprint(d1, d1), u"{'a': u'\u4f60', 'b': u'\u597d'}, {'a': u'\u4f60', 'b': u'\u597d'}")
+        self.assertTrue(uprint(d1, d1) in [u"{'a': u'\u4f60', 'b': u'\u597d'}, {'a': u'\u4f60', 'b': u'\u597d'}", u"{'b': u'\u597d', 'a': u'\u4f60'}, {'b': u'\u597d', 'a': u'\u4f60'}"])
 
     def test_slots_with_pickle(self):
         slots = [Slots() for idx1 in xrange(1000)]
