@@ -52,6 +52,10 @@ class TestPhrasalRecognizer(unittest.TestCase):
 
         self.assertEqual(jieba_parse("精确模式"), [u"精确", u"模式"])
 
+        # Fix wired error
+        # UnicodeDecodeError: 'utf8' codec can't decode byte 0xf3 in position 1: invalid continuation byte
+        print "[__file__]", __file__
+
         current_file = UnicodeUtils.read(__file__)
         self.assertTrue(isinstance(current_file, unicode))
 

@@ -205,7 +205,6 @@ Run tests
 python tests/test.py
 ```
 
-
 License
 ------------------------
 MIT. David Chen @ 17zuoye.
