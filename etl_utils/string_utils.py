@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import collections
-import re
 from .regexp_utils import regexp
 import math
+
 
 class StringUtils(object):
 
@@ -67,11 +67,11 @@ class StringUtils(object):
             lines = [
                 u"",
                 u"计算相似度详细log",
-                u"-"*40,
+                u"-" * 40,
                 u"text1: %s" % text1,
                 u"text2: %s" % text2,
                 u"similarity_rate: %f" % similarity_rate,
-                u"-"*40,
+                u"-" * 40,
             ]
             info = "\n".join(lines)
         else:

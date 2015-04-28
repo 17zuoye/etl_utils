@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import functools
 __all__ = ['slots_with_pickle']
 
 

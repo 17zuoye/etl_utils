@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 class ItemsGroupAndIndexes(object):
 
     """
@@ -13,9 +14,9 @@ class ItemsGroupAndIndexes(object):
         self.object_id_to_same_ids_index_dict = dict()
 
     def exists_between(self, item_id1, item_id2):
-        if not self.object_id_to_same_ids_index_dict.has_key(item_id1):
+        if item_id1 not in self.object_id_to_same_ids_index_dict:
             return False
-        if not self.object_id_to_same_ids_index_dict.has_key(item_id2):
+        if item_id2 not in self.object_id_to_same_ids_index_dict:
             return False
 
         return self.object_id_to_same_ids_index_dict[item_id1] == self.object_id_to_same_ids_index_dict[item_id2]

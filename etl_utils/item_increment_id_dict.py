@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 class ItemIncrementIdDict(object):
 
     """ Assign an auto increment integer to item, e.g. an object_id.
@@ -18,7 +19,7 @@ class ItemIncrementIdDict(object):
 
     @classmethod
     def fetch(cls, object_id1):
-        if cls.object_id_to_increment_dict.has_key(object_id1):
+        if object_id1 in cls.object_id_to_increment_dict:
             return cls.object_id_to_increment_dict[object_id1]
         else:
             cls.count += 1

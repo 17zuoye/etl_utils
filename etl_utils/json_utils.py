@@ -9,6 +9,7 @@ from .design_pattern import singleton
 import datetime  # for parse datetime object to string
 import decimal  # for parse decimal to string
 
+
 class JSONEncoder(json.JSONEncoder):
 
     """ 支持 Decode datetime, decimal等类型 """
@@ -18,12 +19,13 @@ class JSONEncoder(json.JSONEncoder):
             # '2014-10-13T17:51:09.692857'[0:19] => '2014-10-13T17:51:09'
             return obj.isoformat()[0:19]
         elif isinstance(obj, datetime.timedelta):
-            return total_seconds(obj)
+            return datetime.timedelta.total_seconds(obj)
         elif isinstance(obj, decimal.Decimal):
             return float(obj)
         else:
             return json.JSONEncoder.default(self, obj)
 # TODO default_dict
+
 
 @singleton()
 class JsonUtilsClass(object):

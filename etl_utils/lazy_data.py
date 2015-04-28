@@ -6,6 +6,7 @@ from .cache_utils import cpickle_cache
 from ._current_dir import current_dir
 from .design_pattern import singleton, cached_property
 
+
 @singleton()
 class LazyData(object):
 

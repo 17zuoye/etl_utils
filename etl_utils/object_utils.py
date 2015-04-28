@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 def set_default_value(lambdas, msg=u""):
     val = None
     for lambda1 in lambdas:

@@ -3,6 +3,7 @@
 from .design_pattern import singleton
 from collections import defaultdict
 
+
 @singleton()
 class DictUtilsClass(object):
 
@@ -17,7 +18,7 @@ class DictUtilsClass(object):
                 break
 
             if isinstance(current_dict, dict):
-                if current_dict.has_key(k1):
+                if k1 in current_dict:
                     current_dict = current_dict[k1]
                     current_val = current_dict
                 else:

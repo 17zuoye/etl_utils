@@ -7,6 +7,7 @@
 from itertools import chain
 from .design_pattern import singleton, cached_property
 
+
 @singleton()
 class TextArrayXMLParserClass(object):
 

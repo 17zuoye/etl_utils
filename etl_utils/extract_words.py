@@ -3,6 +3,7 @@
 import re
 from .lazy_data import ld
 
+
 def is_nltk_word(str1):
     if not isinstance(str1, unicode):
         try:

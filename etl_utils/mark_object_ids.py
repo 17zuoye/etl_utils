@@ -2,6 +2,7 @@
 
 from .item_increment_id_dict import ItemIncrementIdDict
 
+
 class MarkObjectIds(object):
 
     """
@@ -16,7 +17,7 @@ class MarkObjectIds(object):
 
     def read(self, oids):
         k1 = self.generate_key(oids)
-        return self.mark_object_ids_dict.has_key(k1) and self.mark_object_ids_dict[k1] or None
+        return (k1 in self.mark_object_ids_dict) and self.mark_object_ids_dict[k1] or None
 
     def generate_key(self, oids):
         return ','.join(sorted([str(ItemIncrementIdDict.fetch(oid1)) for oid1 in oids]))

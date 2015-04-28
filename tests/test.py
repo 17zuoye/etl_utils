@@ -56,7 +56,7 @@ class TestPhrasalRecognizer(unittest.TestCase):
         # UnicodeDecodeError: 'utf8' codec can't decode byte 0xf3 in position 1: invalid continuation byte
         print "[__file__]", __file__
 
-        current_file = UnicodeUtils.read(__file__)
+        current_file = UnicodeUtils.read(os.path.join(root_dir, "tests/test.py"))
         self.assertTrue(isinstance(current_file, unicode))
 
     def test_dict_utils(self):

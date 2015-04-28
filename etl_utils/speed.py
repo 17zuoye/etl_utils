@@ -2,6 +2,7 @@
 
 from datetime import datetime
 
+
 class Speed():
 
     def __init__(self):

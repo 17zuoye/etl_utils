@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from werkzeug.utils import cached_property, environ_property
+__all__ = ["singleton", "classproperty", "cached_property"]
+
+from cached_property import cached_property
 from singleton import singleton
+
 
 class ClassPropertyDescriptor(object):
 

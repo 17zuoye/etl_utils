@@ -3,6 +3,7 @@
 from collections import Counter
 from .design_pattern import singleton
 
+
 @singleton()
 class ListUtilsClass(object):
 

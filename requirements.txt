@@ -1,4 +1,5 @@
 nose
+cached_property
 jieba
 marisa_trie
 nltk

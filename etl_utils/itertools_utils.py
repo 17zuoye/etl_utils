@@ -2,6 +2,7 @@
 
 from .design_pattern import singleton
 
+
 @singleton()
 class ItertoolsUtilsClass(object):
 
@@ -42,11 +43,11 @@ class ItertoolsUtilsClass(object):
                 if len(current_result) == size1:
                     final_result.append(current_result)
                 else:
-                    func(seqs2[idx3+1:], size2-1, current_result)
+                    func(seqs2[idx3 + 1:], size2 - 1, current_result)
         func(seqs1, size1)
 
         if inspect:
-            print "\n"*2
+            print "\n" * 2
         return final_result
 
 ItertoolsUtils = ItertoolsUtilsClass()

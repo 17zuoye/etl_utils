@@ -3,6 +3,7 @@
 import re
 from .design_pattern import singleton, cached_property
 
+
 @singleton()
 class RegexpUtils(object):
 

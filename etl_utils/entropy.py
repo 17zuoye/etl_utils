@@ -2,6 +2,7 @@
 
 import math
 
+
 def calculate_entropy(feature_with_count_dict):
     assert hasattr(feature_with_count_dict, 'iteritems')
     assert isinstance(feature_with_count_dict.iteritems().next()[1], int)

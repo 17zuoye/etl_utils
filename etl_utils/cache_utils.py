@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
 import time
 import cPickle
 from termcolor import cprint
+
 
 def cpickle_cache(filename, func1, quiet=False):
     """
@@ -38,5 +38,5 @@ class cPickleCache(object):
             self.blue(u"generating cache ...")
             result = self.func()
             cPickle.dump(result, open(self.filename, 'wb'))
-        self.blue(" load in %2.2f sec" % (time.time()-tb), True)
+        self.blue(" load in %2.2f sec" % (time.time() - tb), True)
         return result
