@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
+    <meta charset="UTF-8">
     <title>ETL Utils by 17zuoye</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>ETL Utils</h1>
-        <h2>etl utils</h2>
-        <a href="https://github.com/17zuoye/etl_utils" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+    <section class="page-header">
+      <h1 class="project-name">ETL Utils</h1>
+      <h2 class="project-tagline">etl utils</h2>
+      <a href="https://github.com/17zuoye/etl_utils" class="btn">View on GitHub</a>
+      <a href="https://github.com/17zuoye/etl_utils/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/17zuoye/etl_utils/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
+    <section class="main-content">
+      <h1>
 <a id="etl-utils" class="anchor" href="#etl-utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>ETL Utils</h1>
+
+<p><a href="https://travis-ci.org/17zuoye/etl_utils"><img src="https://img.shields.io/travis/17zuoye/etl_utils/master.svg?style=flat" alt="Build Status"></a>
+<a href="https://coveralls.io/r/17zuoye/etl_utils"><img src="https://coveralls.io/repos/17zuoye/etl_utils/badge.svg" alt="Coverage Status"></a>
+<a href="https://landscape.io/github/17zuoye/etl_utils/master"><img src="https://landscape.io/github/17zuoye/etl_utils/master/landscape.svg?style=flat" alt="Health"></a>
+<a href="https://pypi.python.org/pypi/etl_utils"><img src="https://img.shields.io/pypi/dm/etl_utils.svg?style=flat" alt="Download"></a>
+<a href="https://pypi.python.org/pypi/etl_utils"><img src="https://img.shields.io/pypi/l/etl_utils.svg?style=flat" alt="License"></a>
+<a href="https://pypi.python.org/pypi/etl_utils"><img src="https://pypip.in/py_versions/etl_utils/badge.svg?style=flat" alt="Python Versions"></a></p>
 
 <p>All API are listed in <code>etl_utils/__init__.py</code>.</p>
 
@@ -48,42 +46,13 @@
 <a id="feature-list" class="anchor" href="#feature-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>Feature List</h2>
 
 <h2>
-<a id="1-cache" class="anchor" href="#1-cache" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Cache</h2>
+<a id="1-terminal" class="anchor" href="#1-terminal" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Terminal</h2>
 
 <h4>
-<a id="11-cpickle_cache-function" class="anchor" href="#11-cpickle_cache-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1. <code>cpickle_cache</code> function</h4>
-
-<div class="highlight highlight-python"><pre>cpickle_cache(cache_file_path, generate_data_func)</pre></div>
-
-<p>Generate cache data if <code>cache_file_path</code> not exists.</p>
-
-<h4>
-<a id="12-cached_property-decorator" class="anchor" href="#12-cached_property-decorator" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2. <code>cached_property</code> decorator</h4>
-
-<p>Turn a function into a property.</p>
-
-<div class="highlight highlight-python"><pre><span class="pl-st">class</span> <span class="pl-en">Universe</span>:
-    <span class="pl-en">@cached_property</span>
-    <span class="pl-st">def</span> <span class="pl-en">answer</span>(<span class="pl-vpf">self</span>):
-        <span class="pl-k">return</span> <span class="pl-c1">42</span>
-
-answer <span class="pl-k">=</span> Universe().answer <span class="pl-c"># no ()</span>
-<span class="pl-k">assert</span> answer, <span class="pl-c1">42</span> <span class="pl-k">//</span> <span class="pl-c1">True</span></pre></div>
-
-<h4>
-<a id="13-classproperty" class="anchor" href="#13-classproperty" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3. <code>classproperty</code>
+<a id="11-process_notifier" class="anchor" href="#11-process_notifier" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1. <code>process_notifier</code>
 </h4>
 
-<p>Similar to <code>cached_property</code>, but it's a property on a class itself.</p>
-
-<h2>
-<a id="2-terminal" class="anchor" href="#2-terminal" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Terminal</h2>
-
-<h4>
-<a id="21-process_notifier" class="anchor" href="#21-process_notifier" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1. <code>process_notifier</code>
-</h4>
-
-<div class="highlight highlight-python"><pre><span class="pl-k">for</span> i1 <span class="pl-k">in</span> process_notifier(iteratable_object, <span class="pl-vpf">msg</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-st">u</span><span class="pl-pds">"</span>RANGE<span class="pl-pds">"</span></span>):
+<div class="highlight highlight-python"><pre><span class="pl-k">for</span> i1 <span class="pl-k">in</span> process_notifier(iteratable_object, <span class="pl-smi">msg</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-k">u</span><span class="pl-pds">"</span>RANGE<span class="pl-pds">"</span></span>):
     <span class="pl-c"># process(i1)</span>
     time.sleep(<span class="pl-c1">0.005</span>)
 <span class="pl-c"># Example output is:</span>
@@ -92,12 +61,12 @@ answer <span class="pl-k">=</span> Universe().answer <span class="pl-c"># no ()<
 <p>Requirements about <code>iteratable_object</code>:</p>
 
 <ol>
-<li>Iteratable data structure, e.g. list like or dict like object, any orm query, or file object.</li>
-<li>Exist a way to fetch total count of this <code>iteratable_object</code>.</li>
+<li>Iteratable data structure, e.g. generator, list like or dict like object, any orm query, or file object.</li>
+<li>Exist a way to fetch total count of this <code>iteratable_object</code>, but it's optional for lazy generator.</li>
 </ol>
 
 <h4>
-<a id="22-uprint" class="anchor" href="#22-uprint" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2. <code>uprint</code>
+<a id="12-uprint" class="anchor" href="#12-uprint" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2. <code>uprint</code>
 </h4>
 
 <p>Python's default <code>print</code> function can only deal with basic <code>unicode</code>, but not the Chinese
@@ -107,12 +76,41 @@ answer <span class="pl-k">=</span> Universe().answer <span class="pl-c"># no ()<
 
 <p>Example:</p>
 
-<div class="highlight highlight-markdown"><pre><span class="pl-mq">&gt;<span class="pl-mq">&gt;<span class="pl-mq">&gt; print({u"你好":u"世界"})</span></span></span>
-<span class="pl-mq"><span class="pl-mq"><span class="pl-mq"></span></span></span>{u'\u4f60\u597d': u'\u4e16\u754c'}
-<span class="pl-mq">&gt;<span class="pl-mq">&gt;<span class="pl-mq">&gt; from etl_utils import uprint</span></span></span>
-<span class="pl-mq"><span class="pl-mq"><span class="pl-mq"></span></span>&gt;<span class="pl-mq">&gt;<span class="pl-mq">&gt; tmp = uprint({u"你好":u"世界"})</span></span></span>
-<span class="pl-mq"><span class="pl-mq"><span class="pl-mq"></span></span></span>{u'你好': u'世界'}
-<span class="pl-mq">&gt;<span class="pl-mq">&gt;<span class="pl-mq">&gt;</span></span></span></pre></div>
+<div class="highlight highlight-markdown"><pre><span class="pl-c"><span class="pl-c1">&gt;</span>&gt;&gt; print({u"你好":u"世界"})</span>
+<span class="pl-c">{u'<span class="pl-cce">\u</span>4f60<span class="pl-cce">\u</span>597d': u'<span class="pl-cce">\u</span>4e16<span class="pl-cce">\u</span>754c'}</span>
+<span class="pl-c"><span class="pl-c"><span class="pl-c1">&gt;</span>&gt;&gt; from etl_utils import uprint</span></span>
+<span class="pl-c"><span class="pl-c"><span class="pl-c"><span class="pl-c1">&gt;</span>&gt;&gt; tmp = uprint({u"你好":u"世界"})</span></span></span>
+<span class="pl-c"><span class="pl-c"><span class="pl-c">{u'你好': u'世界'}</span></span></span>
+<span class="pl-c"><span class="pl-c"><span class="pl-c"><span class="pl-c"><span class="pl-c1">&gt;</span>&gt;&gt;</span></span></span></span></pre></div>
+
+<h2>
+<a id="2-cache" class="anchor" href="#2-cache" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Cache</h2>
+
+<h4>
+<a id="21-cpickle_cache-function" class="anchor" href="#21-cpickle_cache-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1. <code>cpickle_cache</code> function</h4>
+
+<div class="highlight highlight-python"><pre>cpickle_cache(cache_file_path, generate_data_func)</pre></div>
+
+<p>Generate cache data if <code>cache_file_path</code> not exists.</p>
+
+<h4>
+<a id="22-cached_property-decorator" class="anchor" href="#22-cached_property-decorator" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2. <code>cached_property</code> decorator</h4>
+
+<p>Turn a function into a property.</p>
+
+<div class="highlight highlight-python"><pre><span class="pl-k">class</span> <span class="pl-en">Universe</span>:
+    <span class="pl-en">@cached_property</span>
+    <span class="pl-k">def</span> <span class="pl-en">answer</span>(<span class="pl-smi">self</span>):
+        <span class="pl-k">return</span> <span class="pl-c1">42</span>
+
+answer <span class="pl-k">=</span> Universe().answer <span class="pl-c"># no ()</span>
+<span class="pl-k">assert</span> answer, <span class="pl-c1">42</span> <span class="pl-k">//</span> <span class="pl-c1">True</span></pre></div>
+
+<h4>
+<a id="23-classproperty" class="anchor" href="#23-classproperty" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3. <code>classproperty</code>
+</h4>
+
+<p>Similar to <code>cached_property</code>, but it's a property on a class itself.</p>
 
 <h2>
 <a id="3-design-pattern" class="anchor" href="#3-design-pattern" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Design Pattern</h2>
@@ -125,14 +123,14 @@ answer <span class="pl-k">=</span> Universe().answer <span class="pl-c"># no ()<
 see more informations at <a href="http://en.wikipedia.org/wiki/Singleton_pattern">Wikipedia</a> .</p>
 
 <div class="highlight highlight-python"><pre><span class="pl-en">@</span><span class="pl-en">singleton</span>() <span class="pl-c"># or @singleton(multi_init=True)</span>
-<span class="pl-st">class</span> <span class="pl-en">MySingleton</span>(<span class="pl-e"><span class="pl-s3">object</span></span>):
+<span class="pl-k">class</span> <span class="pl-en">MySingleton</span>(<span class="pl-e"><span class="pl-c1">object</span></span>):
 
     <span class="pl-en">@cached_property</span>
-    <span class="pl-st">def</span> <span class="pl-en">heavy_cpu</span>(<span class="pl-vpf">self</span>):
+    <span class="pl-k">def</span> <span class="pl-en">heavy_cpu</span>(<span class="pl-smi">self</span>):
         <span class="pl-c"># process ...</span>
         <span class="pl-k">return</span> cached_data
 
-    <span class="pl-st">def</span> <span class="pl-en">another_function</span>(<span class="pl-vpf">self</span>, <span class="pl-vpf">params</span>):
+    <span class="pl-k">def</span> <span class="pl-en">another_function</span>(<span class="pl-smi">self</span>, <span class="pl-smi">params</span>):
         <span class="pl-k">return</span> process(params)
 
 o1 <span class="pl-k">=</span> MySingleton()
@@ -148,12 +146,12 @@ o2 <span class="pl-k">=</span> MySingleton()
 <a id="4-basic-data-structure-utils" class="anchor" href="#4-basic-data-structure-utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Basic data structure utils</h2>
 
 <div class="highlight highlight-python"><pre>ListUtils.most_common_inspect(list1)
-ListUtils.uniq_seqs(seqs, <span class="pl-vpf">uniq_lambda</span><span class="pl-k">=</span><span class="pl-c1">None</span>)
+ListUtils.uniq_seqs(seqs, <span class="pl-smi">uniq_lambda</span><span class="pl-k">=</span><span class="pl-c1">None</span>)
 StringUtils.merge(<span class="pl-k">*</span>strs)
-StringUtils.calculate_text_similarity(text1, text2, <span class="pl-vpf">inspect</span><span class="pl-k">=</span><span class="pl-c1">False</span>, <span class="pl-vpf">similar_rate_baseline</span><span class="pl-k">=</span><span class="pl-c1">0.0</span>, <span class="pl-vpf">skip_special_chars</span><span class="pl-k">=</span><span class="pl-c1">False</span>)
-StringUtils.frequence_chars_info(str1, <span class="pl-vpf">length_lambda</span><span class="pl-k">=</span><span class="pl-st">lambda</span> <span class="pl-vpf">len1</span> : len1)
-DictUtils.nested_read(dict1, keys, <span class="pl-vpf">default_val</span><span class="pl-k">=</span><span class="pl-c1">None</span>)
-DictUtils.add_default_value(dict1, <span class="pl-vpf">default_value</span><span class="pl-k">=</span><span class="pl-c1">None</span>)
+StringUtils.calculate_text_similarity(text1, text2, <span class="pl-smi">inspect</span><span class="pl-k">=</span><span class="pl-c1">False</span>, <span class="pl-smi">similar_rate_baseline</span><span class="pl-k">=</span><span class="pl-c1">0.0</span>, <span class="pl-smi">skip_special_chars</span><span class="pl-k">=</span><span class="pl-c1">False</span>)
+StringUtils.frequence_chars_info(str1, <span class="pl-smi">length_lambda</span><span class="pl-k">=</span><span class="pl-k">lambda</span> <span class="pl-smi">len1</span> : len1)
+DictUtils.nested_read(dict1, keys, <span class="pl-smi">default_val</span><span class="pl-k">=</span><span class="pl-c1">None</span>)
+DictUtils.add_default_value(dict1, <span class="pl-smi">default_value</span><span class="pl-k">=</span><span class="pl-c1">None</span>)
 UnicodeUtils.is_chinese(uchar)
 UnicodeUtils.is_number(uchar)
 UnicodeUtils.is_alphabet(uchar)
@@ -161,15 +159,15 @@ UnicodeUtils.is_other(uchar)
 UnicodeUtils.B2Q(uchar)
 UnicodeUtils.is_Q(uchar)
 UnicodeUtils.Q2B(uchar)
-UnicodeUtils.stringQ2B(ustring, <span class="pl-vpf">convert_strs</span><span class="pl-k">=</span>{})
+UnicodeUtils.stringQ2B(ustring, <span class="pl-smi">convert_strs</span><span class="pl-k">=</span>{})
 UnicodeUtils.uniform(ustring)
 UnicodeUtils.string2List(ustring)
-UnicodeUtils.ljust(str1, width, <span class="pl-vpf">fillchar</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>)
-UnicodeUtils.rjust(str1, width, <span class="pl-vpf">fillchar</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>)
+UnicodeUtils.ljust(str1, width, <span class="pl-smi">fillchar</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>)
+UnicodeUtils.rjust(str1, width, <span class="pl-smi">fillchar</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>)
 UnicodeUtils.just_str(<span class="pl-v">self</span>)
 UnicodeUtils.read(filename)
 HashUtils.hashvalue_with_sorted(str1)
-ItertoolsUtils.split_seqs_by_size(seqs1, size1, <span class="pl-vpf">inspect</span><span class="pl-k">=</span><span class="pl-c1">False</span>)
+ItertoolsUtils.split_seqs_by_size(seqs1, size1, <span class="pl-smi">inspect</span><span class="pl-k">=</span><span class="pl-c1">False</span>)
 JsonUtils.unicode_dump(item1)</pre></div>
 
 <p>generated by <code>ruby generate_api_doc.rb</code></p>
@@ -202,12 +200,12 @@ regexp.special_chars</pre></div>
 <span class="pl-c"># by eliminating the instance dictionary.</span>
 <span class="pl-c"># And it also possible to pickle/unpickle objects.</span>
 
-<span class="pl-en">@</span><span class="pl-en">slots_with_pickle</span>(<span class="pl-s1"><span class="pl-pds">'</span>attr_a<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>attr_b<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>attr_c<span class="pl-pds">'</span></span>)
-<span class="pl-st">class</span> <span class="pl-en">Slots</span>(<span class="pl-e"><span class="pl-s3">object</span></span>):
-    <span class="pl-st">def</span> <span class="pl-en"><span class="pl-s3">__init__</span></span>(<span class="pl-vpf">self</span>):
-        attr_a <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>a<span class="pl-pds">'</span></span>
-        attr_b <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>b<span class="pl-pds">'</span></span>
-        attr_c <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>c<span class="pl-pds">'</span></span></pre></div>
+<span class="pl-en">@</span><span class="pl-en">slots_with_pickle</span>(<span class="pl-s"><span class="pl-pds">'</span>attr_a<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>attr_b<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>attr_c<span class="pl-pds">'</span></span>)
+<span class="pl-k">class</span> <span class="pl-en">Slots</span>(<span class="pl-e"><span class="pl-c1">object</span></span>):
+    <span class="pl-k">def</span> <span class="pl-en"><span class="pl-c1">__init__</span></span>(<span class="pl-smi">self</span>):
+        attr_a <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>a<span class="pl-pds">'</span></span>
+        attr_b <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>b<span class="pl-pds">'</span></span>
+        attr_c <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>c<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
 <a id="7-other-utils" class="anchor" href="#7-other-utils" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Other utils</h2>
@@ -223,7 +221,7 @@ ItemsGroupAndIndexes <span class="pl-c"># group result</span>
 MarkObjectIds <span class="pl-c"># mark processed objects group</span>
 
 <span class="pl-c"># Sequentially process lambda in `lambdas`, return the first one with no exception.</span>
-set_default_value(lambdas, <span class="pl-vpf">msg</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-st">u</span><span class="pl-pds">"</span><span class="pl-pds">"</span></span>)</pre></div>
+set_default_value(lambdas, <span class="pl-smi">msg</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-k">u</span><span class="pl-pds">"</span><span class="pl-pds">"</span></span>)</pre></div>
 
 <h2>
 <a id="run-tests" class="anchor" href="#run-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run tests</h2>
@@ -234,24 +232,14 @@ set_default_value(lambdas, <span class="pl-vpf">msg</span><span class="pl-k">=</
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>MIT. David Chen @ 17zuoye.</p>
-        </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/17zuoye/etl_utils/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/17zuoye/etl_utils/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/17zuoye/etl_utils">ETL Utils</a> is maintained by <a href="https://github.com/17zuoye">17zuoye</a>.</span>
 
-          <p class="repo-owner"><a href="https://github.com/17zuoye/etl_utils"></a> is maintained by <a href="https://github.com/17zuoye">17zuoye</a>.</p>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+    </section>
 
             <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -266,3 +254,4 @@ set_default_value(lambdas, <span class="pl-vpf">msg</span><span class="pl-k">=</
 
   </body>
 </html>
+
