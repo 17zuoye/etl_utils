@@ -8,7 +8,6 @@ ETL Utils
 [![Python Versions](https://pypip.in/py_versions/etl_utils/badge.svg?style=flat)](https://pypi.python.org/pypi/etl_utils)
 
 
-
 All API are listed in `etl_utils/__init__.py`.
 
 Usage
@@ -32,6 +31,8 @@ Feature List
 #### 1.1. `process_notifier`
 
 ```python
+from etl_utils import process_notifier
+import time
 for i1 in process_notifier(iteratable_object, msg=u"RANGE"):
     # process(i1)
     time.sleep(0.005)
