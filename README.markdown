@@ -20,7 +20,7 @@ pip install etl_utils
 
 Import it.
 ```python
-from etl_utils import * # increase only 6M memory.
+from etl_utils import * # increase only 6 MB memory.
 ```
 
 Feature List
@@ -204,7 +204,9 @@ set_default_value(lambdas, msg=u"")
 Run tests
 ------------------------
 ```bash
-python tests/test.py
+pip install -r requirements.txt
+pip install nose
+nosetests
 ```
 
 License

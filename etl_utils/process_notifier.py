@@ -136,5 +136,5 @@ def process_notifier(scope, msg=u"",):
         # do b1
     """
 
-    assert isinstance(msg, unicode)
+    assert isinstance(msg, unicode), msg
     return ProcessNotifier(scope, msg).generator()

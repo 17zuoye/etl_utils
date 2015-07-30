@@ -56,3 +56,4 @@ docs/_build/
 etl_utils/corpora
 
 .coveralls.yml
+.DS_Store
